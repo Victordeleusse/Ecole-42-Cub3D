@@ -9,7 +9,8 @@ CFLAGS = -Wall -Werror -Wextra -g -MMD
 LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 
 define SRCS :=
-	
+	main.c 
+	MyMiniLibx.c
 endef
 
 SRCS_PATH = Srcs
