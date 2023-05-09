@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 17:09:38 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:25:45 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # endif
 
 # ifndef SIZE
-#  define SIZE 7
+#  define SIZE 18
 # endif
 
 typedef struct	s_player
@@ -30,6 +30,7 @@ typedef struct	s_player
 	double	x;
 	double	y;
 	char	dir;
+	float	speed;
 } t_player;
 
 typedef struct	s_vector
@@ -57,7 +58,7 @@ typedef struct	s_game
 	int			height;
 	int			width;
 	t_mini_img	data;
-	t_mini_img	view;
+	t_mini_img	miniview;
 	t_ray		ray;
 	t_player	pos;
 	float		x;

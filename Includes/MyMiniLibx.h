@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:55:46 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 15:57:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:30:49 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_mini_img
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 } t_mini_img;
 
 #endif
