@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 10:59:48 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:57:41 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,36 @@
 # include <unistd.h>
 # include <math.h>
 
-# include "libft.h"
+# include "MyMiniLibx.h"
 
-# include "mlx.h"
-# include "mlx_int.h"
+# ifndef WIN_H
+#  define WIN_H 480
+# endif
+
+# ifndef WIN_W
+#  define WIN_W 640
+# endif
+
+# ifndef SIZE
+#  define SIZE 7
+# endif
+
 
 typedef struct	s_player
 {
 	double	x;
 	double	y;
 	char	dir;
-}t_player;
+} t_player;
+
+typedef struct	s_vector
+{
+	int	x;
+	int	y;
+} t_vector;
 
 
-typedef struct s_ray
+typedef struct	s_ray
 {
 	float	incre_angle;
 	float	angle;
@@ -40,7 +56,25 @@ typedef struct s_ray
 	float	hfov;
 	float	lim;
 	int		precision;
-}				t_ray;
+} t_ray;
+
+typedef struct	s_game
+{
+	char		**map;
+	void		*mlx;
+	void		*window;
+	int			height;
+	int			width;
+	t_mini_img	data;
+	t_mini_img	view;
+	t_ray		ray;
+	t_player	pos;
+	float		x;
+	float		y;
+} t_game;
+
+void	init_ray(t_game *game);
+t_vector	ft_newvector(int x, int y);
 
 
 // typedef struct	s_point
