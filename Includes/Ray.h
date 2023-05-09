@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MiniMap.h                                          :+:      :+:    :+:   */
+/*   Ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 12:57:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:09:38 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GEOM_H
-# define GEOM_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-
-# include "MyMiniLibx.h"
+#ifndef RAY_H
+# define RAY_H
 
 # ifndef WIN_H
 #  define WIN_H 480
@@ -32,7 +25,6 @@
 #  define SIZE 7
 # endif
 
-
 typedef struct	s_player
 {
 	double	x;
@@ -45,7 +37,6 @@ typedef struct	s_vector
 	int	x;
 	int	y;
 } t_vector;
-
 
 typedef struct	s_ray
 {
@@ -73,8 +64,7 @@ typedef struct	s_game
 	float		y;
 } t_game;
 
-void	init_ray(t_game *game);
-t_vector	ft_newvector(int x, int y);
+
 
 
 // typedef struct	s_point

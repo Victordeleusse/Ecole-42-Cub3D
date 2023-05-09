@@ -11,6 +11,7 @@ LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 define SRCS :=
 	main.c
 	Ray.c
+	DrawMiniMap.c
 	MyMiniLibx.c
 endef
 
@@ -21,7 +22,6 @@ INCLUDES = -I Includes -I Libft_vde-leus -I minilibx-linux
 
 OBJS = ${patsubst %.c, ${OBJS_PATH}/%.o, ${SRCS}}
 DEPS = $(OBJS:.o=.d)
-
 
 
 all: ${NAME} ./cub3D
