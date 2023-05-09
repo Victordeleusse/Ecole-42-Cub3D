@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/08 20:14:14 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:59:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,28 @@
 
 # include "libft.h"
 
-
 # include "mlx.h"
 # include "mlx_int.h"
 
-// typedef struct	t_vector
-// {
-// 	double	x;
-// 	double	y;
-// }t_vector;
+typedef struct	s_player
+{
+	double	x;
+	double	y;
+	char	dir;
+}t_player;
+
+
+typedef struct s_ray
+{
+	float	incre_angle;
+	float	angle;
+	float	cos;
+	float	sin;
+	float	hfov;
+	float	lim;
+	int		precision;
+}				t_ray;
+
 
 // typedef struct	s_point
 // {	
