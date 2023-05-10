@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 20:41:00 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 15:48:01 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:34:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 // Changing direction - Rotation
 # define KEY_A		97
 # define KEY_D		100
+# define KEY_W		119
+# define KEY_S		115
+
 
 #endif
 

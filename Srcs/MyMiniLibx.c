@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:58:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 18:57:15 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:49:32 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ void	ft_clear_window(t_game *game)
 int	ft_key_action(int keycode, t_game *game)
 {
 	if (keycode == KEY_LEFT)
-		game->pos.x -= DEP;
-	else if (keycode == KEY_RIGHT)
-		game->pos.x += DEP;	
-	if (keycode == KEY_UP)
-		game->pos.y -= DEP;
-	if (keycode == KEY_DOWN)
-		game->pos.y += DEP;
+		game->ray.angle -= 3;
+	if (keycode == KEY_RIGHT)
+		game->ray.angle += 3;
+	if (keycode == KEY_A)
+		move_player(KEY_A, game, 0, 0);
+	if (keycode == KEY_W)
+		move_player(KEY_W, game, 0, 0);
+	if (keycode == KEY_D)
+		move_player(KEY_D, game, 0, 0);
+	if (keycode == KEY_S)
+		move_player(KEY_S, game, 0, 0);
 	return (0);
 }
 
@@ -83,9 +87,7 @@ void	ft_draw(t_game *game)
 	ft_clear_window(game);
 	mlx_clear_window(game->mlx, game->window);
 	cub_minimap(game);
-	cub_miniview(game);
-	redraw_elem(game, game->miniview, WIN_W - game->miniview.width - 20, \
-			WIN_H - game->miniview.height - 20);
+	cub_raycast(game);
 	my_mlx_pixel_put(&(game->data), game->pos.x, game->pos.y, 0x00FF0000);
 	mlx_put_image_to_window(game->mlx, game->window, game->data.image, 0, 0);
 }
@@ -97,25 +99,4 @@ void	ft_mlx_pack(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-void	my_mlx_img_to_img(int p[2], t_mini_img img[2], int c1)
-{
-	int	xy[2];
-	int	color;
-
-	xy[1] = -1;
-	while (++xy[1] < img[0].height)
-	{
-		xy[0] = -1;
-		while (++xy[0] < img[0].width)
-		{
-			if (xy[0] + p[0] >= 0 && xy[1] + p[1] >= 0)
-			{
-				color = my_mlx_pixel_get(&img[0], xy[0], xy[1]);
-				if (color != c1)
-					my_mlx_pixel_put(&img[1], xy[0] + p[0], \
-						xy[1] + p[1], color);
-			}
-		}
-	}
-}
 

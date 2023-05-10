@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 18:29:45 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:13:51 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(void)
 		game->height++;
 	find_start(game);
 	game->pos.dir = 'N';
-	game->pos.speed = 0.15;
+	game->pos.speed = 5;
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "mini_map");
 	game->data.image = mlx_new_image(game->mlx, WIN_W, WIN_H);
@@ -67,6 +67,7 @@ int	main(void)
 		&game->miniview.line_length, &game->miniview.endian);
 	game->miniview.width = 30 * SIZE;
 	game->miniview.height = 15 * SIZE;
+	init_ray(game);
 	ft_mlx_pack(game);
 	return (0);
 }

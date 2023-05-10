@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/09 18:25:45 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:44:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 # ifndef SIZE
 #  define SIZE 18
+# endif
+
+# ifndef SIZE_D
+#  define SIZE_D 1
 # endif
 
 typedef struct	s_player
