@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 15:35:29 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/10 12:44:23 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:13:02 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,43 +62,11 @@ typedef struct	s_game
 	int			height;
 	int			width;
 	t_mini_img	data;
-	t_mini_img	miniview;
 	t_ray		ray;
 	t_player	pos;
 	float		x;
 	float		y;
 } t_game;
-
-
-
-
-// typedef struct	s_point
-// {	
-// 	t_vector	*pos_player;
-// 	t_vector	*dir_view;
-// 	t_vector	*cam_plan;
-// }t_point;
-	
-// typedef struct	s_map_2D
-// {
-// 	char	**map;
-// 	int		width;
-// 	int		height;
-// }t_map_2D;
-
-// typedef struct	s_cub
-// {
-// 	void		*mlx_ptr;
-// 	void		*win_ptr;
-// 	t_mini_img	minimap;
-// 	t_mini_img	miniview;
-// 	double		posx;
-// 	double		posy;
-// }t_cub;
-
-// t_map_2D	*ft_init_map2D(void);
-// t_vector	*init_vector(double x_start, double y_start);
-// t_point		*get_starting_param(void);
 
 #endif
 

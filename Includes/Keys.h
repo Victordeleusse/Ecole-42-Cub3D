@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 20:41:00 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/10 11:34:48 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:43:10 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 # define KEY_ESC	65307
 
-// Moving into space
+// Changing direction - Rotation
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
 # define KEY_UP		65362
 # define KEY_DOWN	65364
 
-// Changing direction - Rotation
+// Moving into space
 # define KEY_A		97
 # define KEY_D		100
 # define KEY_W		119

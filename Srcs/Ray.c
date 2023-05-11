@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:04:46 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/10 13:01:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:44:26 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	move_player(int keycode, t_game *g, float ray_cos, float ray_sin)
 		angle = g->ray.angle + 90;
 	ray_cos = cos(degree_to_radians(angle)) * g->pos.speed;
 	ray_sin = sin(degree_to_radians(angle)) * g->pos.speed;
-	if (!ft_strchr("1c", g->map[(int)(g->pos.y + 0.5 + \
+	if (!ft_strchr("1", g->map[(int)(g->pos.y + 0.5 + \
 			(3 * ray_sin))][(int)(g->pos.x + 0.5)]))
 		g->pos.y += ray_sin;
-	if (!ft_strchr("1c", \
+	if (!ft_strchr("1", \
 		g->map[(int)(g->pos.y + 0.5)][(int)(g->pos.x + 0.5 + (3 * ray_cos))]))
 		g->pos.x += ray_cos;
 }
@@ -62,15 +62,15 @@ float	distance_to_wall(t_game *game, float ray_angle)
 	game->ray.sin = sin(degree_to_radians(ray_angle)) / game->ray.precision;
 	game->x = game->pos.x + 0.5;
 	game->y = game->pos.y + 0.5;
-	while (!ft_strchr("1c", game->map[(int)game->y][(int)game->x]) && \
+	while (!ft_strchr("1", game->map[(int)game->y][(int)game->x]) && \
 		sqrt(powf(game->x - game->pos.x - 0.5, 2.) + \
 		powf(game->y - game->pos.y - 0.5, 2.)) < game->ray.lim)
 	{
 		game->x += game->ray.cos;
 		game->y += game->ray.sin;
-		if (ft_strchr("1c", game->map[(int)game->y][(int)game->x]))
+		if (ft_strchr("1", game->map[(int)game->y][(int)game->x]))
 			my_mlx_pixel_put(&game->data, game->x * SIZE_D, game->y * SIZE_D, 0x00FF0000);
-		else if (ray_angle - 1 < game->ray.angle && ray_angle + 1 > game->ray.angle)
+		else if (((ray_angle - 1) < game->ray.angle) && ((ray_angle + 1) > game->ray.angle))
 			my_mlx_pixel_put(&game->data, game->x * SIZE_D, game->y * SIZE_D, 0x0000FFFF);
 		else
 			my_mlx_pixel_put(&game->data, game->x * SIZE_D, game->y * SIZE_D, 0x00BDC1C6);
