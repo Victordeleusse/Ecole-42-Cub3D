@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MyMiniLibx.h                                       :+:      :+:    :+:   */
+/*   Raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 16:14:12 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 21:44:36 by vde-leus         ###   ########.fr       */
+/*   Created: 2023/05/12 16:41:58 by vde-leus          #+#    #+#             */
+/*   Updated: 2023/05/12 22:19:51 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MYMINILIBX_H
-# define MYMINILIBX_H
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
+
 
 #endif

@@ -10,9 +10,11 @@ LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 
 define SRCS :=
 	main.c
-	Ray.c
-	DrawMiniMap.c
+	Action.c
+	Init.c
 	MyMiniLibx.c
+	Raycasting.c
+
 endef
 
 SRCS_PATH = Srcs
