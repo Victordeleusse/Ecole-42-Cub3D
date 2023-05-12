@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 23:36:18 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/12 23:41:19 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ static void	dda_calcul(t_ray *ray, t_map2D *map2D)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		// dprintf(2, "map_x : %d map_y : %d \n", ray->map_x, ray->map_y);
-		// dprintf(2, "map position : %c \n", map2D->map[(int)ray->map_x][(int)ray->map_y]);
-		dprintf(2, "map position : %c \n", map2D->map[5][5]);
+		dprintf(2, "map_x : %d map_y : %d \n", ray->map_x, ray->map_y);
+		dprintf(2, "map position : %c \n", map2D->map[10][0]);
 		if (map2D->map[ray->map_x][ray->map_y] == '1')
 			ray->hit = 1;
 	}

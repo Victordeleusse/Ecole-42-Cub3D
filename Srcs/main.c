@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 23:33:43 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/12 23:40:38 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(void)
 "11111111 1111111 111111111111\n"
 "00000000000000000000000000000\n"
 , '\n');
+	dprintf(2, "map position : %c \n", map2D->map[10][0]);
 	init_game(game);
 	init_map_2D(map2D);
 	if (!get_player_position(map2D->map, ray))
