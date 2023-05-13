@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/13 18:49:58 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/13 20:45:40 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	get_player_direction(t_ray *ray)
 	ray->dir_x = 0;
 	ray->plane_x = 0;
 	ray->plane_y = 0;
+	ray->old_plane_x = 0;
+	ray->old_dir_x = 0;
 	if (ray->dir == 'N')
 	{	
 		ray->dir_x = -1;
