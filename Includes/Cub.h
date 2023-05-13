@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 23:15:10 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/13 18:52:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 # include "mlx_int.h"
 
 # ifndef WIN_H
-#  define WIN_H 480
+#  define WIN_H 720
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 640
+#  define WIN_W 720
 # endif
 
 # ifndef SIZE
-#  define SIZE 5
+#  define SIZE 1
 # endif
 
 // 
@@ -103,8 +103,8 @@ typedef struct s_ray
 typedef struct s_map2D
 {
 	char	**map;
-	size_t	width;
-	size_t	height;
+	int		width;
+	int		height;
 }	t_map2D;
 
 ////////////////// Init.c //////////////////
@@ -130,6 +130,10 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 ////////////////// Action.c //////////////////
 
 int		ft_key_action(int keycode, t_ray *ray, t_map2D *map2D);
+
+////////////////// Free.c //////////////////
+
+void	free_all(t_map2D *map2D, t_ray *ray, t_game *game);
 
 
 #endif

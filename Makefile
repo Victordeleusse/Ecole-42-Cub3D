@@ -14,7 +14,7 @@ define SRCS :=
 	Init.c
 	MyMiniLibx.c
 	Raycasting.c
-
+	Free.c
 endef
 
 SRCS_PATH = Srcs
