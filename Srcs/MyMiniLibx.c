@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 22:20:12 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/13 20:01:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_draw(t_ray *ray, t_map2D *map2D, t_game *game)
 void	ft_mlx_pack(t_ray *ray, t_map2D *map2D, t_game *game)
 {
 	ft_draw(ray, map2D, game);
-	mlx_key_hook(game->window, &ft_get_transfo, game);
+	mlx_hook(game->window, 2, 1L << 0, &ft_get_transfo, game);
+	dprintf(2, "After putting \n");
 	mlx_loop(game->mlx);
 }

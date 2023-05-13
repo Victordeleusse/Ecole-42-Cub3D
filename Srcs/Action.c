@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:12:11 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/12 21:50:28 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:55:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 	
 int	ft_key_action(int keycode, t_ray *ray, t_map2D *map2D)
 {
-	//move backward if no wall behind you
+	//move backward 
+	dprintf(2, "CODE : %d\n", keycode);
 	if (keycode == KEY_S)
 	{
 		if (map2D->map[(int)(ray->pos_x - ray->dir_x * ray->movespeed)][(int)(ray->pos_y)] == '0')
@@ -22,7 +23,7 @@ int	ft_key_action(int keycode, t_ray *ray, t_map2D *map2D)
 		if (map2D->map[(int)(ray->pos_x)][(int)(ray->pos_y - ray->dir_y * ray->movespeed)] == '0')
 			ray->pos_y -= ray->dir_y * ray->movespeed;
 	}
-	//move forward if no wall in front of you
+	//move forward 
 	if (keycode == KEY_W)
 	{
 		if (map2D->map[(int)(ray->pos_x + ray->dir_x * ray->movespeed)][(int)(ray->pos_y)] == '0')

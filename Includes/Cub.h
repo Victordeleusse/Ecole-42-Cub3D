@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/13 18:52:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:57:33 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #  define SIZE 1
 # endif
 
-// 
+// KEYS_CODE //
 
 # define KEY_ESC	65307
 # define KEY_LEFT	65361
@@ -46,6 +46,18 @@
 # define KEY_W		119
 # define KEY_S		115
 
+// WALL_COLORS // 
+
+# ifndef RGB_RED
+#  define RGB_RED 0xFFFF0000
+# endif
+
+# ifndef RGB_BLUE
+#  define RGB_BLUE 0xFF00FF00
+# endif
+
+// STRUCTURES //
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -56,14 +68,6 @@ typedef struct s_game
 	int		line_length;
 	int		endian;
 } t_game;
-
-# ifndef RGB_RED
-#  define RGB_RED 0xFFFF0000
-# endif
-
-# ifndef RGB_BLUE
-#  define RGB_BLUE 0xFF00FF00
-# endif
 
 typedef struct s_ray
 {
