@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 13:06:31 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:40:09 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,15 @@ int	main(int argc, char **argv)
 	t_map2D		*map2D;
 	t_ray		*ray;
 	t_game		*game;
-	int			result = 0;
 
 	(void)argc;
 	game = (t_game *)malloc(sizeof(t_game));
 	ray = (t_ray *)malloc(sizeof(t_ray));
 	map2D = (t_map2D *)malloc(sizeof(t_map2D));
-	map2D->map = ft_split( \
-"111111111111111\n"
-"100000000000001\n"
-"100000000000001\n"
-"100001111000001\n"
-"100001111000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"100N00000000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"100000000000001\n"
-"111111111111111\n"
-, '\n');
-	map2D->fd = open(argv[1], O_RDWR);
-	result = extract_map(map2D);
-	dprintf(2, "HEIGHT map : %d\n", result);
+
+	if (!fillTheTab(argv[1], map2D))
+		return(dprintf(2, "Erreur sur la map"), 0);
+	dprintf(2, "one player ? %d\n", isOnlyOnePlayer(map2D));
 	// game->map = map2D;
 	// game->rayon = ray;
 	// init_game(game);

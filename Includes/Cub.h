@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 13:02:37 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:37:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,11 @@ void	get_player_direction(t_ray *ray);
 
 ////////////////// Parsing.c //////////////////
 
-int		extract_map(t_map2D *map2D);
+int	isDir(char c);
+int	fillTheTab(char *file, t_map2D *map2D);
 
+int	isOnlyOnePlayer(t_map2D *map2D);
+int	isWellClosed(t_map2D *map2D);
 
 ////////////////// MyMiniLibx.c //////////////////
 

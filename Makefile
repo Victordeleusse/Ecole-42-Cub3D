@@ -11,6 +11,7 @@ LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 define SRCS :=
 	main.c
 	Parsing.c
+	Parsing2.c
 	Action.c
 	Init.c
 	MyMiniLibx.c
