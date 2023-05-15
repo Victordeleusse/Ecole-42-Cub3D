@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:23:49 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 16:37:07 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:52:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	crossCheckDir(t_map2D *map2D, int i, int j)
 	return (1);
 }
 
-int	isOnlyOnePlayer(t_map2D *map2D)
+static int	isOnlyOnePlayer(t_map2D *map2D)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ int	isOnlyOnePlayer(t_map2D *map2D)
 	return (0);
 }
 
-int	isWellClosed(t_map2D *map2D)
+static int	isWellClosed(t_map2D *map2D)
 {
 	int	i;
 	int	j;
@@ -91,4 +91,12 @@ int	isWellClosed(t_map2D *map2D)
 		}
 		i++;
 	}
+	return (1);
+}
+
+int	isMapAndPlayerCheck(t_map2D *map2D)
+{
+	if (!isOnlyOnePlayer(map2D) || !isWellClosed(map2D))
+		return (0);
+	return (1);
 }
