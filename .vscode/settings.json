@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"myminilibx.h": "c",
-		"cub.h": "c"
+		"cub.h": "c",
+		"cmath": "c"
 	}
 }

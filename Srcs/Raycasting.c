@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/13 19:30:47 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:08:06 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,16 +141,29 @@ static void	choose_color(t_ray *ray, t_map2D *map2D)
 	else if (map2D->map[ray->map_x][ray->map_y] == '2')
 		ray->color = RGB_BLUE;
 	else 
-		ray->color = 0xFF000000;
+		ray->color = 0xFFF00FFF;
 }
 
 static void	draw_line(t_game *game, t_ray *ray, int x)
 {
+	int	ground = ray->draw_start - 1;
+	int sky = ray->draw_end + 1;
+
 	ray->draw_start = ray->draw_start - 1;
 	while (++ray->draw_start <= ray->draw_end)
 	{
 		if (ray->draw_start < ray->h && x < ray->w)
 			my_mlx_pixel_put(game, x, ray->draw_start, ray->color);
+	}
+	while (ground > 1)
+	{	
+		my_mlx_pixel_put(game, x, ground, 0xFFafebff);
+		ground--;
+	}
+	while (sky <= ray->h)
+	{
+		my_mlx_pixel_put(game, x, sky, 0xFF006500);
+		sky++;
 	}
 }
 

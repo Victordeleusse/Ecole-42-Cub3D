@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/13 19:57:33 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:02:37 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,6 @@
 
 // STRUCTURES //
 
-typedef struct s_game
-{
-	void	*mlx;
-	void	*window;
-	void	*image;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-} t_game;
-
 typedef struct s_ray
 {
 	int						color;
@@ -109,7 +98,21 @@ typedef struct s_map2D
 	char	**map;
 	int		width;
 	int		height;
+	int 	fd;
 }	t_map2D;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*window;
+	void	*image;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	t_ray	*rayon;
+	t_map2D	*map;
+} t_game;
 
 ////////////////// Init.c //////////////////
 
@@ -117,14 +120,19 @@ void	init_map_2D(t_map2D *map2D);
 int		get_player_position(char **map, t_ray *player);
 void	get_player_direction(t_ray *ray);
 
+////////////////// Parsing.c //////////////////
+
+int		extract_map(t_map2D *map2D);
+
+
 ////////////////// MyMiniLibx.c //////////////////
 
 void	init_game(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_clear_window(t_game *game);
-int		ft_get_transfo(int key, t_ray *ray, t_map2D *map2D, t_game *game);
-void	ft_draw(t_ray *ray, t_map2D *map2D, t_game *game);
-void	ft_mlx_pack(t_ray *ray, t_map2D *map2D, t_game *game);
+int		ft_get_transfo(int key, t_game *game);
+void	ft_draw(t_game *game);
+void	ft_mlx_pack(t_game *game);
 
 ////////////////// Raycasting.c //////////////////
 
@@ -133,7 +141,7 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 
 ////////////////// Action.c //////////////////
 
-int		ft_key_action(int keycode, t_ray *ray, t_map2D *map2D);
+int		ft_key_action(int keycode, t_game *game);
 
 ////////////////// Free.c //////////////////
 
