@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 14:49:48 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:29:24 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # endif
 
 # ifndef SIZE
-#  define SIZE 1
+#  define SIZE 10
 # endif
 
 // KEYS_CODE //
@@ -64,6 +64,12 @@ typedef struct s_rgb
 	int	g;
 	int	b;
 }	t_rgb;
+
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
 
 typedef struct s_ray
 {
@@ -108,6 +114,19 @@ typedef struct s_map2D
 	int 	fd;
 }	t_map2D;
 
+typedef struct s_minimap
+{
+	void			*image;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+	t_map2D			*map;
+	t_ray			*rayon;
+}	t_minimap;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -121,13 +140,18 @@ typedef struct s_game
 	unsigned long	sky_color;
 	t_ray			*rayon;
 	t_map2D			*map;
+	t_minimap		*minimap;
 } t_game;
 
 ////////////////// Init.c //////////////////
 
-void	init_map_2D(t_map2D *map2D);
 int		get_player_position(char **map, t_ray *player);
-void	get_player_direction(t_ray *ray);
+void	initAll(t_game *game, t_map2D *map2D, t_ray *ray, t_minimap *minimap);
+
+////////////////// Minimap.c //////////////////
+
+void	init_minimap(t_minimap *minimap, t_game *game);
+void	fillMinimap(t_minimap *minimap);
 
 ////////////////// Parsing.c //////////////////
 
@@ -144,12 +168,10 @@ void	init_game(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	ft_clear_window(t_game *game);
 int		ft_get_transfo(int key, t_game *game);
-void	ft_draw(t_game *game);
 void	ft_mlx_pack(t_game *game);
 
 ////////////////// Raycasting.c //////////////////
 
-void	ray_init(t_ray *ray);
 void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 
 ////////////////// Action.c //////////////////

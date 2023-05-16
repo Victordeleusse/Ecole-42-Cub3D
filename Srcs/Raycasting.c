@@ -6,19 +6,11 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 12:08:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:28:50 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
-
-void	ray_init(t_ray *ray)
-{
-	ray->w = WIN_W;
-	ray->h = WIN_H;
-	ray->movespeed = 0.1;
-	ray->rotspeed = 0.1;
-}
 
 static void	raycasting_one(t_ray *ray);
 static void	raycasting_two(t_ray *ray);
@@ -147,10 +139,10 @@ static void	choose_color(t_ray *ray, t_map2D *map2D)
 static void	draw_line(t_game *game, t_ray *ray, int x)
 {
 	int	ground = ray->draw_start - 1;
-	int sky = ray->draw_end + 1;
+	int sky = ray->draw_end;
 
 	ray->draw_start = ray->draw_start - 1;
-	while (++ray->draw_start <= ray->draw_end)
+	while (++ray->draw_start < ray->draw_end)
 	{
 		if (ray->draw_start < ray->h && x < ray->w)
 			my_mlx_pixel_put(game, x, ray->draw_start, ray->color);
