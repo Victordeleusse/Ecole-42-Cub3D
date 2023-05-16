@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 14:21:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:30:24 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_map2D		*map2D;
 	t_ray		*ray;
 	t_game		*game;
-	unsigned long	test;
 
 	(void)argc;
 	game = (t_game *)malloc(sizeof(t_game));
@@ -25,8 +24,10 @@ int	main(int argc, char **argv)
 	map2D = (t_map2D *)malloc(sizeof(t_map2D));
 
 	if (!fillTheTab(argv[1], map2D) || !isMapAndPlayerCheck(map2D))
-		return(dprintf(2, "Erreur sur la map"), 0);
-	test = getColors(game, argv[1]);
+		return(dprintf(2, "FREE->Erreur sur la map"), 0);
+	if (!getColors(game, argv[1]))
+		return(dprintf(2, "FREE->Erreur sur ls couleurs\n"), 0);
+	dprintf(2, "sky color : |%lu| || ground color : |%lu|\n", game->sky_color, game->ground_color);
 	// game->map = map2D;
 	// game->rayon = ray;
 	// init_game(game);

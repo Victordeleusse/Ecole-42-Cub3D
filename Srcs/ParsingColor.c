@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:58:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 15:54:49 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:27:53 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ static int	isLineSky(char *str)
 	return (1);
 }
 
+static void	initRGB(t_rgb *color)
+{
+	color->r = -1;
+	color->g = -1;
+	color->b = -1;
+}
+
 static int	getRGB(char *str, t_rgb *color)
 {
 	int		i;
@@ -119,25 +126,22 @@ static int	getRGB(char *str, t_rgb *color)
 	return (1);
 }
 
-// static unsigned long	createRGB(int r, int g, int b)
-// {
-// 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-// }
+static unsigned long	createRGB(int r, int g, int b)
+{
+	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
 
 int	getColors(t_game *game, char *file)
 {
 	int		fd;
+	int 	data;
 	t_rgb	colorFloor;
 	t_rgb	colorSky;
 	char	*line;
 
-	(void)game;
-	colorFloor.r = -1;
-	colorFloor.g = -1;
-	colorFloor.b = -1;
-	colorSky.r = -1;
-	colorSky.g = -1;
-	colorSky.b = -1;
+	data = 0;
+	initRGB(&colorFloor);
+	initRGB(&colorSky);
 	fd = open(file, O_RDWR);
 	while (1)
 	{
@@ -146,26 +150,25 @@ int	getColors(t_game *game, char *file)
 			break;
 		if (isLineSky(line))
 		{	
+			data++;
 			if(!getRGB(line, &colorSky))
-			{	
-				dprintf(2, "ERROR SKY when trying to get colors\n");
-				free(line);
-				return (0);
-			}
+				data = -1;
 		}
 		if (isLineFloor(line))
 		{	
+			data++;
 			if(!getRGB(line, &colorFloor))
-			{	
-				dprintf(2, "ERROR FLOOR when trying to get colors\n");
-				free(line);
-				return (0);
-			}
+				data = -1;
 		}
 		free(line);
 	}
-	dprintf(2, "FLOOR : r->%d g->%d b->%d\n", colorFloor.r, colorFloor.g, colorFloor.b);
-	dprintf(2, "SKY : r->%d g->%d b->%d\n", colorSky.r, colorSky.g, colorSky.b);
+	if (data != 2)
+	{	
+		dprintf(2, "COLORS : Data missing or not well settled\n");
+		return (0);
+	}
+	game->ground_color = createRGB(colorFloor.r, colorFloor.g, colorFloor.b);
+	game->sky_color = createRGB(colorSky.r, colorSky.g, colorSky.b);
 	return (1);
 }
 
