@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 14:22:24 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:49:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	fillTheTab(char *file, t_map2D *map2D);
 
 int	isMapAndPlayerCheck(t_map2D *map2D);
 
-unsigned long	getColors(t_game *game, char *file);
+int	getColors(t_game *game, char *file);
 
 ////////////////// MyMiniLibx.c //////////////////
 
