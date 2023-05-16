@@ -12,6 +12,7 @@ define SRCS :=
 	main.c
 	ParsingMap.c
 	ParsingMap2.c
+	ParsingColor.c
 	Action.c
 	Init.c
 	MyMiniLibx.c

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 11:25:54 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:22:24 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,17 @@ typedef struct s_map2D
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*window;
-	void	*image;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
+	void			*mlx;
+	void			*window;
+	void			*image;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
 	unsigned long	ground_color;
 	unsigned long	sky_color;
-	t_ray	*rayon;
-	t_map2D	*map;
+	t_ray			*rayon;
+	t_map2D			*map;
 } t_game;
 
 ////////////////// Init.c //////////////////
@@ -135,6 +135,8 @@ int	isDir(char c);
 int	fillTheTab(char *file, t_map2D *map2D);
 
 int	isMapAndPlayerCheck(t_map2D *map2D);
+
+unsigned long	getColors(t_game *game, char *file);
 
 ////////////////// MyMiniLibx.c //////////////////
 
