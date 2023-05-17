@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 19:20:00 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:23:29 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	main(int argc, char **argv)
 	ft_init();
 	if (!fillTheTab(game, argv[1]) || !isMapAndPlayerCheck(game->map))
 		return(dprintf(2, "Need to free.\n"), 1);
-	if (!getColors(game, argv[1]))
-		return(dprintf(2, "FREE->Erreur sur ls couleurs\n"), 0);
 	initAll(game);
 	if (!get_player_position(game->map->map, game->rayon))
 		return (dprintf(2, "ERROR MAP\n"), 1);
