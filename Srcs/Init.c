@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 19:54:28 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 09:59:45 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,20 @@ static int	get_map_height(char **map)
 
 static int	get_map_width(char **map)
 {
-	if (map[0])
-		return (ft_strlen(map[0]));
-	return (0);
+	int	width;
+	int	i;
+
+	if (!map[0])
+		return (0);
+	width = ft_strlen(map[0]);
+	i = 0;
+	while (map[i])
+	{
+		if ((int)ft_strlen(map[i]) > width)
+			width = (int)ft_strlen(map[i]);
+		i++;
+	}
+	return (width);
 }
 
 static void	init_map_2D(t_map2D *map2D)

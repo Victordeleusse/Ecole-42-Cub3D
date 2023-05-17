@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 20:29:24 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:26:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,10 @@ void	initAll(t_game *game, t_map2D *map2D, t_ray *ray, t_minimap *minimap);
 ////////////////// Minimap.c //////////////////
 
 void	init_minimap(t_minimap *minimap, t_game *game);
-void	fillMinimap(t_minimap *minimap);
+t_vector	generateNewVector(int pos_x, int pos_y);
+void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
+void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension);
+void	fillMinimap(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 

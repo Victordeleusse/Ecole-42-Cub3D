@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 17:28:50 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:31:20 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	raycasting_one(t_ray *ray);
 static void	raycasting_two(t_ray *ray);
-static void	dda_calcul(t_ray *ray, t_map2D *map2D);
+static void	dda_calcul(t_game *game);
 static void	raycasting_last(t_ray *ray);
 static void	choose_color(t_ray *ray, t_map2D *map2D);
 static void	draw_line(t_game *game, t_ray *ray, int x);
@@ -39,7 +39,7 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D)
 		ray->camera_x = 2.0 * x / (double)ray->w - 1.0;
 		raycasting_one(ray);
 		raycasting_two(ray);
-		dda_calcul(ray, map2D);
+		dda_calcul(game);
 		raycasting_last(ray);
 		choose_color(ray, map2D);
 		ft_verline(game, x, ray);
@@ -88,24 +88,29 @@ static void	raycasting_two(t_ray *ray)
 	}
 }
 
-static void	dda_calcul(t_ray *ray, t_map2D *map2D)
+static void	dda_calcul(t_game *game)
 {
-	while (ray->hit == 0)
+	t_vector	standard;
+	
+	standard = generateNewVector(SIZE, SIZE);
+	while (game->rayon->hit == 0)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
+		if (game->rayon->side_dist_x < game->rayon->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
+			game->rayon->side_dist_x += game->rayon->delta_dist_x;
+			game->rayon->map_x += game->rayon->step_x;
+			game->rayon->side = 0;
 		}
 		else
 		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
+			game->rayon->side_dist_y += game->rayon->delta_dist_y;
+			game->rayon->map_y += game->rayon->step_y;
+			game->rayon->side = 1;
 		}
-		if (map2D->map[ray->map_x][ray->map_y] == '1')
-			ray->hit = 1;
+		if (game->map->map[game->rayon->map_x][game->rayon->map_y] == '1')
+			game->rayon->hit = 1;		
+		else
+			fillLine(game->minimap, generateNewVector(game->rayon->map_x, game->rayon->map_y), standard);
 	}
 }
 

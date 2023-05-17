@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 20:28:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:28:44 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_minimap(t_minimap *minimap, t_game *game)
 								&minimap->endian);
 }
 
-static void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color)
+void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color)
 {
 	char	*dst;
 
@@ -31,13 +31,35 @@ static void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color
 	*(unsigned int *)dst = color;
 }
 
-static t_vector	generateNewVector(int pos_x, int pos_y)
+t_vector	generateNewVector(int pos_x, int pos_y)
 {
 	t_vector	vector;
 
 	vector.x = pos_x;
 	vector.y = pos_y;
 	return (vector);
+}
+
+void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension)
+{
+	int	x_move;
+	int	y_move;
+	int	color;
+
+	color = 0x00005555;
+	if (minimap->map->map[position.y][position.x] == '1')
+		color = 0x00FF0000;
+	if (minimap->map->map[position.y][position.x] == 'N' || minimap->map->map[position.y][position.x] == 'S' || \
+			minimap->map->map[position.y][position.x] == 'E' || minimap->map->map[position.y][position.x] == 'W')
+		color = 0x000088FF;
+	y_move = 0;
+	x_move = 0;
+	while (y_move < standardDimension.y && x_move < standardDimension.x)
+	{
+		my_mlx_pixel_put_minimap(minimap, SIZE * position.x + x_move, SIZE * position.y + y_move, color);
+		x_move++;
+		y_move++;	
+	}
 }
 
 static void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension)
@@ -49,6 +71,9 @@ static void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDim
 	color = 0xFF000000;
 	if (minimap->map->map[position.y][position.x] == '1')
 		color = 0x00FF0000;
+	if (minimap->map->map[position.y][position.x] == 'N' || minimap->map->map[position.y][position.x] == 'S' || \
+			minimap->map->map[position.y][position.x] == 'E' || minimap->map->map[position.y][position.x] == 'W')
+		color = 0x000088FF;
 	y_move = 0;
 	while (y_move < standardDimension.y)
 	{
@@ -62,22 +87,22 @@ static void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDim
 	}
 }
 
-void	fillMinimap(t_minimap *minimap)
+void	fillMinimap(t_game *game)
 {
 	int			i;
 	int			j;
 	t_vector	position;
 	t_vector	standard;
 	
+	standard = generateNewVector(SIZE, SIZE);
 	j = 0;
-	while (j < minimap->height)
+	while (j < game->minimap->height)
 	{
 		i = 0;
-		while (i < minimap->width)
+		while (i < game->minimap->width)
 		{
 			position = generateNewVector(i, j);
-			standard = generateNewVector(SIZE, SIZE);
-			fillArea(minimap, position, standard);
+			fillArea(game->minimap, position, standard);
 			i++;
 		}
 		j++;
