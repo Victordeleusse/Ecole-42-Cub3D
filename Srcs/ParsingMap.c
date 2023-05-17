@@ -6,12 +6,13 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 17:53:01 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:04:33 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
+# define GREEN "\033[32m"
 # define RED "\033[0;31m"
 # define BLUEBG "\033[37;44m"
 # define ENDCL "\033[0m"
@@ -47,8 +48,6 @@ int	good_extension(char *line)
 	i = ft_strlen(line) - 1;
 	if (i == -1)
 		return (0);
-	if (line[i == '\n'])
-		i--;
 	if (i < 3)
 		return (0);
 	i -= 3;
@@ -108,9 +107,9 @@ int	atoi_colors(char *str)
 void	parsing_error(char *text)
 {
 	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd("Parsing error arround ", 2);
+	ft_putstr_fd("Something went wrong during the parsing around "RED, 2);
 	ft_putstr_fd(text, 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd(ENDCL"\n", 2);
 }
 
 int	parse_texture(t_game *game, char *line, t_minimap *elem, int case_n)
@@ -120,6 +119,7 @@ int	parse_texture(t_game *game, char *line, t_minimap *elem, int case_n)
 	static int	west;
 	static int	east;
 
+	line = strip_l(line);
 	if ((case_n == 1 && north) || (case_n == 2 && south) \
 	|| (case_n == 3 && west) || (case_n == 4 && east) || !good_extension(line))
 		return (parsing_error(line), 0);
@@ -131,7 +131,7 @@ int	parse_texture(t_game *game, char *line, t_minimap *elem, int case_n)
 		west = 1;
 	else if (case_n == 4)
 		east = 1;
-	elem->image = mlx_xpm_file_to_image(game->mlx, strip_l(line), \
+	elem->image = mlx_xpm_file_to_image(game->mlx, line, \
 	&(elem->width), &(elem->height));
 	if (!(elem->image))
 		return (parsing_error(line), 0);
@@ -145,13 +145,14 @@ int	parse_color(char *line, int *elem, int case_n)
 	static int	floor;
 	static int	ceiling;
 
+	line = strip_l(line);
 	if ((case_n == 1 && floor) || (case_n == 2 && ceiling))
 		return (parsing_error(line), 0);
 	else if (case_n == 1)
 		floor = 1;
 	else if (case_n == 2)
 		ceiling = 1;
-	*elem = atoi_colors(strip_l(line));
+	*elem = atoi_colors(line);
 	if (*elem == -1)
 		return (parsing_error(line), 0);
 	return (1);
@@ -190,7 +191,7 @@ int	init_parsing(t_game *game, char *file)
 	game->east = malloc(sizeof(t_minimap));
 	if (!game->north || !game->south || !game->west || !game->east \
 	|| !game->buffer_map)
-		return (ft_putstr_fd("Error\n" "malloc failed\n", 2), -1);
+		return (ft_putstr_fd("Error\n" "malloc failed.\n", 2), -1);
 	game->north->image = NULL;
 	game->north->addr = NULL;
 	game->south->image = NULL;
@@ -208,12 +209,12 @@ int	parse_map(t_game *game, char *line)
 	char	*buffer;
 
 	if (line[0] == '\n')
-		return (ft_putstr_fd("Error\n" "Parsing went bad.\n", 2), 0);
+		return (parsing_error(line), 0);
 	buffer = ft_strjoin(game->buffer_map, line);
 	free(game->buffer_map);
 	game->buffer_map = buffer;
 	if (!game->buffer_map)
-		return (ft_putstr_fd("Error\n" "Parsing went bad.\n", 2), 0);
+		return (parsing_error(line), 0);
 	return (1);
 }
 
@@ -246,7 +247,7 @@ int	parse_line(t_game *game, char *line)
 
 void	print_data(t_game *game)
 {
-	printf(RED"Game data"ENDCL"\n");
+	printf(GREEN"Parsing data"ENDCL"\n");
 	printf("\n");
 	printf("NO: %p\n", game->north);
 	printf("SO: %p\n", game->south);
