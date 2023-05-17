@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:05:09 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:10:27 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	game->mlx = mlx_init(); // a free
 	game->map = map2D;
 	if (!fillTheTab(game, argv[1]) || !isMapAndPlayerCheck(map2D))
-		return(dprintf(2, "FREE->Erreur sur la map"), 0);
+		return(dprintf(2, "Shutting down. Need to free.\n"), 1);
 	free(ray);
 	free(minimap);
 	free_parsing(game);
