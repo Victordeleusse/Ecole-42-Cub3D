@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 12:58:31 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:38:58 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,15 @@ int	main(int argc, char **argv)
 	ray = (t_ray *)malloc(sizeof(t_ray));
 	map2D = (t_map2D *)malloc(sizeof(t_map2D));
 	minimap = (t_minimap *)malloc(sizeof(t_minimap));
-	if (!fillTheTab(argv[1], map2D) || !isMapAndPlayerCheck(map2D))
+	game->mlx = mlx_init(); // a free
+	game->map = map2D;
+	if (!fillTheTab(game, argv[1]) || !isMapAndPlayerCheck(map2D))
 		return(dprintf(2, "FREE->Erreur sur la map"), 0);
+	free(ray);
+	free(minimap);
+	free_parsing(game);
+	free(game);
+	return (1);
 	if (!getColors(game, argv[1]))
 		return(dprintf(2, "FREE->Erreur sur ls couleurs\n"), 0);
 	initAll(game, map2D, ray, minimap);

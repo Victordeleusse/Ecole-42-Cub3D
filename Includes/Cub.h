@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 14:45:20 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:35:27 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,12 @@ typedef struct s_game
 	int				sky_color;
 	t_ray			*rayon;
 	t_map2D			*map;
+	char			*buffer_map;
 	t_minimap		*minimap;
+	t_minimap		*north;
+	t_minimap		*south;
+	t_minimap		*west;
+	t_minimap		*east;
 } t_game;
 
 ////////////////// Init.c //////////////////
@@ -158,8 +163,10 @@ void	fillMinimap(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 
+void	free_parsing(t_game *game);
+
 int	isDir(char c);
-int	fillTheTab(char *file, t_map2D *map2D);
+int	fillTheTab(t_game *game, char *file);
 
 int	isMapAndPlayerCheck(t_map2D *map2D);
 

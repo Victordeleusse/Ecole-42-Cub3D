@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MyMiniLibx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 18:40:39 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:46:11 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_game(t_game *game)
 {
-	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
 	game->image = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->addr = mlx_get_data_addr(game->image, &game->bpp, &game->line_length,

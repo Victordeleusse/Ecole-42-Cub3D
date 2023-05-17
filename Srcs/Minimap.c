@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 13:22:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:55:48 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDim
 	int	color;
 	
 	color = 0xFF000000;
-	dprintf(2, "\n\nCOMPARAISON : HEIGHT -> %d vs %d || WIDTH -> %d vs %d\n", minimap->height, position.y, minimap->width, position.x);
+	// dprintf(2, "\n\nCOMPARAISON : HEIGHT -> %d vs %d || WIDTH -> %d vs %d\n", minimap->height, position.y, minimap->width, position.x);
 	if (minimap->map->map[position.y][position.x] == '1')
 		color = 0x00FF0000;
 	if (minimap->map->map[position.y][position.x] == 'N' || minimap->map->map[position.y][position.x] == 'S' || \
