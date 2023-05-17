@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 12:31:20 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:43:05 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ static void	dda_calcul(t_game *game)
 		}
 		if (game->map->map[game->rayon->map_x][game->rayon->map_y] == '1')
 			game->rayon->hit = 1;		
-		else
-			fillLine(game->minimap, generateNewVector(game->rayon->map_x, game->rayon->map_y), standard);
+		// else
+		// 	fillLine(game->minimap, generateNewVector(game->rayon->map_x, game->rayon->map_y), standard);
 	}
 }
 

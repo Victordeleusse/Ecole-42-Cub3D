@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:58:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/16 16:27:53 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:41:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	isLineFloor(char *str)
 			i++;
 		}
 	}
+	if (i == 0 || i == 1)
+		return (0);
 	if (str[i - 1] == ',' || count != 2)
 		return (0);
 	return (1);
@@ -67,6 +69,8 @@ static int	isLineSky(char *str)
 			i++;
 		}
 	}
+	if (i == 0 || i == 1)
+		return (0);
 	if (str[i - 1] == ',' || count != 2)
 		return (0);
 	return (1);
