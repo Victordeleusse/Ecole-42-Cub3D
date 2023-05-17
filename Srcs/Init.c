@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 09:59:45 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:14:59 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	get_player_position(char **map, t_ray *player)
 			{	
 				player->dir = map[(int)player->pos_x][(int)player->pos_y];
 				get_player_direction(player);
+				map[(int)player->pos_x][(int)player->pos_y] = '0';
 				return (1);
 			}
 			player->pos_y++;
@@ -107,13 +108,10 @@ int	get_player_position(char **map, t_ray *player)
 	return (0);
 }
 
-void	initAll(t_game *game, t_map2D *map2D, t_ray *ray, t_minimap *minimap)
+void	initAll(t_game *game)
 {
-	game->map = map2D;
-	game->rayon = ray;
-	game->minimap = minimap;
 	init_game(game);
-	init_map_2D(map2D);
-	init_ray(ray);
-	init_minimap(minimap, game);
+	init_map_2D(game->map);
+	init_ray(game->rayon);
+	init_minimap(game->minimap, game);
 }

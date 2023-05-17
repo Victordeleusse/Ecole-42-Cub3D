@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:47:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:07:58 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_game
 ////////////////// Init.c //////////////////
 
 int		get_player_position(char **map, t_ray *player);
-void	initAll(t_game *game, t_map2D *map2D, t_ray *ray, t_minimap *minimap);
+void	initAll(t_game *game);
 
 ////////////////// Minimap.c //////////////////
 
