@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 19:08:29 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:20:00 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,5 @@ int	main(int argc, char **argv)
 	if (!get_player_position(game->map->map, game->rayon))
 		return (dprintf(2, "ERROR MAP\n"), 1);
 	ft_mlx_pack(game);
-	fillMinimap(game);
-	// raycasting(game, ray, map2D);
-	// mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);
-	// mlx_loop(game->mlx);
-	// // free_all(map2D, ray, game);
 	return (0);
 }
