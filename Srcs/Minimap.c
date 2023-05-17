@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 17:49:51 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:41:59 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,29 @@ void	fillMinimap(t_game *game)
 {
 	int			i;
 	int			j;
+	// int			center_x = 0;;
+	// int			center_y = 0;
+	// int			delta_sup_x = 0;
+	// int			delta_sup_y = 0;
+	// int			delta_inf_x = 0;
+	// int			delta_inf_y = 0;
+	// int			diff_x = 0;
+	// int			diff_y = 0;
 	t_vector	position;
 	t_vector	standard;
 	
+	// center_x = (int)game->rayon->pos_x;
+	// if (center_x < 4)
+	// 	diff_x = 4 - center_x;
+	// center_y = (int)game->rayon->pos_y;
+	// if (center_x < 4)
+	// 	diff_x = 4 - center_x;
+	// delta_sup_x = game->map->width - center_x;
+	// if (delta_sup_x < 4)
+	// 	diff_x = 4 - delta_sup_x;
+	
+		
+	// center_y = (int)game->rayon->pos_y;
 	standard = generateNewVector(SIZE, SIZE);
 	j = 0;
 	while (j < game->minimap->height)
