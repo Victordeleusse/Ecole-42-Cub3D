@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 12:26:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:45:20 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ typedef struct s_game
 	int				bpp;
 	int				line_length;
 	int				endian;
-	unsigned long	ground_color;
-	unsigned long	sky_color;
+	int				ground_color;
+	int				sky_color;
 	t_ray			*rayon;
 	t_map2D			*map;
 	t_minimap		*minimap;

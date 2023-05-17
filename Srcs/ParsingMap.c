@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parsing.c                                          :+:      :+:    :+:   */
+/*   ParsingMap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 16:24:34 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:19:33 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	isMapLine(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] != '1' && str[i] != ' ' && str[i] != '0')
@@ -64,6 +66,8 @@ static void	getHeightMap(char *file, t_map2D *map2D)
 				free(line);
 				line = get_next_line(map2D->fd);
 			}
+			if (line)
+				free(line);
 			break ;
 		}
 	}
