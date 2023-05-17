@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 17:35:27 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:39:44 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+
+# define GREEN "\033[32m"
+# define RED "\033[0;31m"
+# define BLUEBG "\033[37;44m"
+# define ENDCL "\033[0m"
 
 # include "libft.h"
 # include "mlx.h"
@@ -187,6 +192,7 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 ////////////////// Action.c //////////////////
 
 int		ft_key_action(int keycode, t_game *game);
+int		end_it(t_game *game);
 
 ////////////////// Free.c //////////////////
 

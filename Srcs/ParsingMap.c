@@ -6,16 +6,11 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:04:33 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:16:40 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
-
-# define GREEN "\033[32m"
-# define RED "\033[0;31m"
-# define BLUEBG "\033[37;44m"
-# define ENDCL "\033[0m"
 
 void	ft_printtab(char **tab)
 {
@@ -107,9 +102,9 @@ int	atoi_colors(char *str)
 void	parsing_error(char *text)
 {
 	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd("Something went wrong during the parsing around "RED, 2);
+	ft_putstr_fd("Parsing failed : "RED"\"", 2);
 	ft_putstr_fd(text, 2);
-	ft_putstr_fd(ENDCL"\n", 2);
+	ft_putstr_fd("\""ENDCL"\n", 2);
 }
 
 int	parse_texture(t_game *game, char *line, t_minimap *elem, int case_n)

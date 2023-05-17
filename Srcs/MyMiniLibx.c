@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 15:46:11 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:40:20 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_get_transfo(int key, t_game *game)
 void	ft_mlx_pack(t_game *game)
 {
 	ft_draw(game);
+	mlx_hook(game->window, 17, 0, &end_it, game);
 	mlx_hook(game->window, 2, 1L << 0, &ft_get_transfo, game);
 	mlx_loop(game->mlx);
 }

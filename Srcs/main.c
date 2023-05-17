@@ -6,11 +6,17 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:10:27 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:40:18 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
+
+int	end_it(t_game *game)
+{
+	(void) game;
+	exit(0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -27,18 +33,13 @@ int	main(int argc, char **argv)
 	game->mlx = mlx_init(); // a free
 	game->map = map2D;
 	if (!fillTheTab(game, argv[1]) || !isMapAndPlayerCheck(map2D))
-		return(dprintf(2, "Shutting down. Need to free.\n"), 1);
-	free(ray);
-	free(minimap);
-	free_parsing(game);
-	free(game);
-	return (1);
+		return(dprintf(2, "Need to free.\n"), 1);
 	if (!getColors(game, argv[1]))
 		return(dprintf(2, "FREE->Erreur sur ls couleurs\n"), 0);
 	initAll(game, map2D, ray, minimap);
 	if (!get_player_position(map2D->map, ray))
 		return (dprintf(2, "ERROR MAP\n"), 1);
-	// ft_mlx_pack(game);
+	ft_mlx_pack(game);
 	fillMinimap(game);
 	// raycasting(game, ray, map2D);
 	mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);

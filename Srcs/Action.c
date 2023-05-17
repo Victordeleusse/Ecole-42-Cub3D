@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:12:11 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 11:30:05 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:39:28 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	ft_key_action(int keycode, t_game *game)
 		game->rayon->plane_x = game->rayon->plane_x * cos(game->rayon->rotspeed) - game->rayon->plane_y * sin(game->rayon->rotspeed);
 		game->rayon->plane_y = game->rayon->old_plane_x * sin(game->rayon->rotspeed) + game->rayon->plane_y * cos(game->rayon->rotspeed);
 	}
+	if (keycode == KEY_ESC)
+		end_it(game);
 	return (0);
 }
 	

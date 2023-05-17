@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parsing2.c                                         :+:      :+:    :+:   */
+/*   ParsingMap2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:23:49 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/15 17:52:54 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:16:41 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ static int	crossCheck(t_map2D *map2D, int i, int j)
 {
 	if (i == 0 || j == 0 || !map2D->map[i + 1] || !map2D->map[i][j + 1])
 		return (0);
-	if (map2D->map[i - 1][j] != '0' && map2D->map[i - 1][j] != '1' && !isDir(map2D->map[i - 1][j]))
+	if (map2D->map[i - 1][j] != '0' && map2D->map[i - 1][j] != '1' \
+	&& !isDir(map2D->map[i - 1][j]))
 		return (0);
-	if (map2D->map[i + 1][j] != '0' && map2D->map[i + 1][j] != '1' && !isDir(map2D->map[i + 1][j]))
+	if (map2D->map[i + 1][j] != '0' && map2D->map[i + 1][j] != '1' \
+	&& !isDir(map2D->map[i + 1][j]))
 		return (0);
-	if (map2D->map[i][j - 1] != '0' && map2D->map[i][j - 1] != '1' && !isDir(map2D->map[i][j - 1]))
+	if (map2D->map[i][j - 1] != '0' && map2D->map[i][j - 1] != '1' \
+	&& !isDir(map2D->map[i][j - 1]))
 		return (0);
-	if (map2D->map[i][j + 1] != '0' && map2D->map[i][j + 1] != '1' && !isDir(map2D->map[i][j + 1]))
+	if (map2D->map[i][j + 1] != '0' && map2D->map[i][j + 1] != '1' \
+	&& !isDir(map2D->map[i][j + 1]))
 		return (0);
 	return (1);
 }
@@ -97,6 +101,6 @@ static int	isWellClosed(t_map2D *map2D)
 int	isMapAndPlayerCheck(t_map2D *map2D)
 {
 	if (!isOnlyOnePlayer(map2D) || !isWellClosed(map2D))
-		return (0);
+		return (ft_putstr_fd("Error\n" "Parsing failed : "RED"incorrect map format"ENDCL".\n", 2), 0);
 	return (1);
 }
