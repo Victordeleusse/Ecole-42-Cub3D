@@ -6,13 +6,13 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 12:43:05 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:45:22 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-static void	raycasting_one(t_ray *ray);
+static void	raycasting_one(t_game *game,t_ray *ray);
 static void	raycasting_two(t_ray *ray);
 static void	dda_calcul(t_game *game);
 static void	raycasting_last(t_ray *ray);
@@ -33,11 +33,12 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D)
 {
 	int	x;
 
+	(void)map2D;
 	x = 0;
 	while (x < ray->w)
 	{
 		ray->camera_x = 2.0 * x / (double)ray->w - 1.0;
-		raycasting_one(ray);
+		raycasting_one(game, ray);
 		raycasting_two(ray);
 		dda_calcul(game);
 		raycasting_last(ray);
@@ -47,12 +48,18 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D)
 	}
 }
 
-static void	raycasting_one(t_ray *ray)
+static void	raycasting_one(t_game *game, t_ray *ray)
 {
+	t_vector	position;
+	t_vector	standard;
+	
+	standard = generateNewVector(SIZE, SIZE);
 	ray->rdx = ray->dir_x + ray->plane_x * ray->camera_x;
 	ray->rdy = ray->dir_y + ray->plane_y * ray->camera_x;
 	ray->map_x = (int)ray->pos_x;
 	ray->map_y = (int)ray->pos_y;
+	position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
+	fillPlayer(game->minimap, position, standard);
 	ray->side_dist_x = 0;
 	ray->side_dist_y = 0;
 	ray->delta_dist_x = fabs(1 / ray->rdx);
@@ -91,6 +98,7 @@ static void	raycasting_two(t_ray *ray)
 static void	dda_calcul(t_game *game)
 {
 	t_vector	standard;
+	t_vector	position;
 	
 	standard = generateNewVector(SIZE, SIZE);
 	while (game->rayon->hit == 0)
@@ -109,8 +117,11 @@ static void	dda_calcul(t_game *game)
 		}
 		if (game->map->map[game->rayon->map_x][game->rayon->map_y] == '1')
 			game->rayon->hit = 1;		
-		// else
-		// 	fillLine(game->minimap, generateNewVector(game->rayon->map_x, game->rayon->map_y), standard);
+		else
+		{
+			position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
+			fillLine(game->minimap, position, standard);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 14:45:20 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:31:02 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ void	initAll(t_game *game, t_map2D *map2D, t_ray *ray, t_minimap *minimap);
 void	init_minimap(t_minimap *minimap, t_game *game);
 t_vector	generateNewVector(int pos_x, int pos_y);
 void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
+void	fillPlayer(t_minimap *minimap, t_vector position, t_vector standardDimension);
+void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension);
 void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension);
 void	fillMinimap(t_game *game);
 
@@ -160,6 +162,7 @@ void	fillMinimap(t_game *game);
 
 int	isDir(char c);
 int	fillTheTab(char *file, t_map2D *map2D);
+
 
 int	isMapAndPlayerCheck(t_map2D *map2D);
 

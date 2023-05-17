@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 12:58:31 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:45:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	main(int argc, char **argv)
 	initAll(game, map2D, ray, minimap);
 	if (!get_player_position(map2D->map, ray))
 		return (dprintf(2, "ERROR MAP\n"), 1);
-	// ft_mlx_pack(game);
-	fillMinimap(game);
+	ft_mlx_pack(game);
+	// fillMinimap(game);
 	// raycasting(game, ray, map2D);
-	mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);
-	mlx_loop(game->mlx);
+	// mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);
+	// mlx_loop(game->mlx);
 	// // free_all(map2D, ray, game);
 	return (0);
 }
