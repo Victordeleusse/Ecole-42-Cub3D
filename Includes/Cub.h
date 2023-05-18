@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:34 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:26:15 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,11 +193,11 @@ int		parsing(t_game *game, char *file);
 void	parsing_error(char *text);
 int		parse_color(char *line, int *elem, int case_n);
 
-int		isDir(char c);
+int		is_dir(char c);
 int		parse_data(t_game *game, int fd);
 
 
-int	isMapAndPlayerCheck(t_map2D *map2D);
+int	is_map_and_player_check(t_map2D *map2D);
 
 int	getColors(t_game *game, char *file);
 
@@ -216,6 +216,10 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 ////////////////// Action.c //////////////////
 
 int		ft_key_action(int keycode, t_game *game);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_right(t_game *game);
+void	move_left(t_game *game);
 
 ////////////////// Free.c //////////////////
 

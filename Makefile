@@ -16,7 +16,8 @@ define SRCS :=
 	parsing/ParseMap.c
 	GetMapData.c
 	Minimap.c
-	Action.c
+	KeyAction.c
+	Movements.c
 	MyMiniLibx.c
 	Raycasting.c
 	parsing/Parsing.c

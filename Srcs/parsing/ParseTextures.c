@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseTextures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 16:59:57 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:25:48 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	good_extension(char *line)
 {
 	int	i;
-	
+
 	i = ft_strlen(line) - 1;
 	if (i == -1)
 		return (0);
