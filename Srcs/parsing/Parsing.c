@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:26:34 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/18 15:03:26 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:50:02 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	parsing(t_game *game, char *file)
 	if (len < 5 || ft_strcmp(".cub", file + len - 4) != 0)
 		return (ft_putstr_fd("Error\n"RED"Incorrect file extension."ENDCL \
 		"\n", 2), close(fd), 0);
-	if(!parse_data(game, fd) || !isMapAndPlayerCheck(game->map))
+	if (!parse_data(game, fd) || !is_map_and_player_check(game->map))
 		return (close(fd), 0);
 	print_data(game);
 	return (close(fd), 1);

@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:51:19 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:50:24 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	good_extension(char *line)
 {
 	int	i;
-	
+
 	i = ft_strlen(line) - 1;
 	if (i == -1)
 		return (0);

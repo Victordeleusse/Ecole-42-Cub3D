@@ -6,13 +6,13 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:52:38 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:48:26 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-int	isDir(char c)
+int	is_dir(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
@@ -22,8 +22,6 @@ int	isDir(char c)
 char	*strip_l(char *line)
 {
 	size_t	i;
-	(void) i;
-	(void) line;
 
 	while (*line == ' ')
 		line++;
@@ -92,5 +90,3 @@ int	parse_data(t_game *game, int fd)
 		return (0);
 	return (1);
 }
-
-

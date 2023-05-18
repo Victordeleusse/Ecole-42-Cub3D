@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:07:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:02:32 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,26 @@ static void	get_data_ray(t_ray *ray)
 	ray->rotspeed = 0.1;
 }
 
-static int	get_map_height(char **map)
+static void	get_map_width_and_height(t_map2D *map_container)
 {
-	int	cur;
+	int		width;
+	int		height;
+	char	**map;
 
-	cur = 0;
-	while (map[cur])
-		cur++;
-	return (cur);
-}
-
-static int	get_map_width(char **map)
-{
-	int	width;
-	int	i;
-
-	if (!map[0])
-		return (0);
-	width = ft_strlen(map[0]);
-	i = 0;
-	while (map[i])
+	map = map_container->map;
+	height = 0;
+	width = 0;
+	if (map && map[0])
 	{
-		if ((int)ft_strlen(map[i]) > width)
-			width = (int)ft_strlen(map[i]);
-		i++;
+		while (map[height])
+		{
+			if ((int)ft_strlen(map[height]) > width)
+				width = (int)ft_strlen(map[height]);
+			height++;
+		}
 	}
-	return (width);
-}
-
-static void	get_data_map_2D(t_map2D *map2D)
-{
-	map2D->height = get_map_height(map2D->map);
-	map2D->width = get_map_width(map2D->map);
+	map_container->width = width;
+	map_container->height = height;
 }
 
 static void	get_player_direction(t_ray *ray)
@@ -62,27 +50,14 @@ static void	get_player_direction(t_ray *ray)
 	ray->plane_y = 0;
 	ray->old_plane_x = 0;
 	ray->old_dir_x = 0;
-	if (ray->dir == 'N')
-	{	
+	if (ray->dir == 'N' || ray->dir == 'W')
 		ray->dir_x = -1;
-		ray->plane_y = 0.66;
-	}
-	else if (ray->dir == 'S')
-	{	
+	else if (ray->dir == 'S' || ray->dir == 'E')
 		ray->dir_x = 1;
-		ray->plane_y = -0.66;
-	}
-	else if (ray->dir == 'E')
-	{	
-		ray->dir_y = 1;		
-		ray->plane_x = 0.66;
-	}
-	else if (ray->dir == 'W')
-	{	
-		ray->dir_y = -1;
+	if (ray->dir == 'N' || ray->dir == 'E')
+		ray->plane_y = 0.66;
+	else if (ray->dir == 'S' || ray->dir == 'W')
 		ray->plane_x = -0.66;
-	}
-	return ;
 }
 
 int	get_player_position(char **map, t_ray *player)
@@ -93,8 +68,10 @@ int	get_player_position(char **map, t_ray *player)
 		player->pos_y = 0;
 		while (map[(int)player->pos_x][(int)player->pos_y])
 		{
-			if (map[(int)player->pos_x][(int)player->pos_y] == 'N' || map[(int)player->pos_x][(int)player->pos_y] == 'S' ||
-				map[(int)player->pos_x][(int)player->pos_y] == 'E' || map[(int)player->pos_x][(int)player->pos_y] == 'W')
+			if (map[(int)player->pos_x][(int)player->pos_y] == 'N' \
+			|| map[(int)player->pos_x][(int)player->pos_y] == 'S' \
+			|| map[(int)player->pos_x][(int)player->pos_y] == 'E' \
+			|| map[(int)player->pos_x][(int)player->pos_y] == 'W')
 			{	
 				player->dir = map[(int)player->pos_x][(int)player->pos_y];
 				get_player_direction(player);
@@ -110,7 +87,7 @@ int	get_player_position(char **map, t_ray *player)
 
 void	get_map_data(t_game *game)
 {
-	get_data_map_2D(game->map);
+	get_map_width_and_height(game->map);
 	get_data_ray(game->rayon);
 	init_minimap(game->minimap, game);
 }

@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 15:48:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:45:54 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:53:12 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	free_mlx(t_game *game)
 		mlx_destroy_display(game->mlx);
 }
 
-static void	free_map2D(t_map2D *map2D)
+static void	free_map2d(t_map2D *map2D)
 {
 	int	i;
 
@@ -64,7 +64,7 @@ int	free_and_quit(t_game *game)
 {
 	free_parsing(game);
 	free_mlx(game);
-	free_map2D(game->map);
+	free_map2d(game->map);
 	free(game->rayon);
 	free(game->minimap);
 	free(game->mlx);
