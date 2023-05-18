@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:48:54 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:18:42 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	init_minimap(t_minimap *minimap, t_game *game)
 	minimap->rayon = game->rayon;
 	minimap->width = game->map->width;
 	minimap->height = game->map->height;
-	minimap->image = mlx_new_image(game->mlx, WIN_W / 2, WIN_H / 3);
-	minimap->addr = mlx_get_data_addr(minimap->image, &minimap->bpp, &minimap->line_length,
-								&minimap->endian);
 }
 
 void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color)
