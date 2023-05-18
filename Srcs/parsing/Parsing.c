@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:26:34 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/18 15:03:26 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:38:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static int	init_parsing(t_game *game, char *file)
 
 	game->buffer_map = malloc(sizeof(char) * 1);
 	game->buffer_map[0] = '\0';
-	game->north = malloc(sizeof(t_minimap));
-	game->south = malloc(sizeof(t_minimap));
-	game->west = malloc(sizeof(t_minimap));
-	game->east = malloc(sizeof(t_minimap));
+	game->north = malloc(sizeof(t_text));
+	game->south = malloc(sizeof(t_text));
+	game->west = malloc(sizeof(t_text));
+	game->east = malloc(sizeof(t_text));
 	if (!game->north || !game->south || !game->west || !game->east \
 	|| !game->buffer_map)
 		return (ft_putstr_fd("Error\n"RED"malloc failed."ENDCL"\n", 2), -1);

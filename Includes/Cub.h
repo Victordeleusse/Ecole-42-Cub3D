@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 15:55:26 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:00:34 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # ifndef WIN_W
 #  define WIN_W 1000
 # endif
+
+#define texWidth 64
+#define texHeight 64
 
 // KEYS_CODE //
 
@@ -128,6 +131,22 @@ typedef struct s_minimap
 	t_ray			*rayon;
 }	t_minimap;
 
+typedef struct s_text
+{
+	void			*image;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+	double			wallx;
+	int				tex_x;
+	int				tex_y;
+	double			step;
+	double			texpos;
+}	t_text;
+
 typedef struct s_game
 {
 	void			*mlx;
@@ -143,10 +162,10 @@ typedef struct s_game
 	t_map2D			*map;
 	char			*buffer_map;
 	t_minimap		*minimap;
-	t_minimap		*north;
-	t_minimap		*south;
-	t_minimap		*west;
-	t_minimap		*east;
+	t_text			*north;
+	t_text			*south;
+	t_text			*west;
+	t_text			*east;
 } t_game;
 
 ////////////////// Init.c //////////////////
@@ -169,7 +188,7 @@ void	fillMinimapAgain(t_game *game);
 ////////////////// Parsing.c //////////////////
 
 char	*strip_l(char *line);
-int		parse_texture(t_game *game, char *line, t_minimap *elem, int case_n);
+int		parse_texture(t_game *game, char *line, t_text *elem, int case_n);
 int		parsing(t_game *game, char *file);
 void	parsing_error(char *text);
 int		parse_color(char *line, int *elem, int case_n);

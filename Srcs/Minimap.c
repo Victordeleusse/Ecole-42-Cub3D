@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 15:51:40 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:22:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void	fillMinimapAgain(t_game *game)
 	while (j < game->minimap->height)
 	{
 		i = 0;
-		while (i < game->minimap->width)
+		while (game->map->map[j][i])
 		{
 			position = generateNewVector(i, j);
 			fillAreaAgain(game->minimap, position, standard);

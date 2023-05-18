@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseTextures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:51:19 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:59:57 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	good_extension(char *line)
 	return (!ft_strncmp(line + i, ".xpm", 4));
 }
 
-int	parse_texture(t_game *game, char *line, t_minimap *elem, int case_n)
+int	parse_texture(t_game *game, char *line, t_text *elem, int case_n)
 {
 	static int	north;
 	static int	south;

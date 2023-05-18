@@ -21,6 +21,7 @@ define SRCS :=
 	Raycasting.c
 	parsing/Parsing.c
 	Free.c
+	Textures.c
 endef
 
 SRCS_PATH = Srcs
