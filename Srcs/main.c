@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 17:39:44 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:23:00 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ int	main(int argc, char **argv)
 	get_map_data(game);
 	if (!get_player_position(game->map->map, game->rayon))
 		return (free_and_quit(game), 1);
+	ft_key_action(KEY_RIGHT, game);
+	ft_key_action(KEY_W, game);
+	ft_key_action(KEY_LEFT, game);
+	ft_key_action(KEY_S, game);
 	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
 	ft_mlx_pack(game);
 	return (0);

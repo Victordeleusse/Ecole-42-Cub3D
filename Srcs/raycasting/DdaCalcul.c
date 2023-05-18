@@ -27,16 +27,16 @@ static void	_dda_calcul_wall(t_game *game, t_vector standard)
 			arrondi = round(game->rayon->dir_x * 100) / 100;
 			if (arrondi > 0.80 || arrondi < -0.80)
 			{
-				position = generateNewVector(game->rayon->map_y, \
+				position = generate_new_vector(game->rayon->map_y, \
 				game->rayon->map_x);
-				fillLine(game->minimap, position, standard);
+				fill_line(game->minimap, position, standard);
 			}
 		}
 		else if (game->rayon->side == 1)
 		{
-			position = generateNewVector(game->rayon->map_y, \
+			position = generate_new_vector(game->rayon->map_y, \
 			game->rayon->map_x);
-			fillLine(game->minimap, position, standard);
+			fill_line(game->minimap, position, standard);
 		}
 	}
 }
@@ -45,7 +45,7 @@ void	dda_calcul(t_game *game)
 {
 	t_vector	standard;
 
-	standard = generateNewVector(WIN_H / 100, WIN_W / 100);
+	standard = generate_new_vector(WIN_H / 100, WIN_W / 100);
 	while (game->rayon->hit == 0)
 	{
 		if (game->rayon->side_dist_x < game->rayon->side_dist_y)

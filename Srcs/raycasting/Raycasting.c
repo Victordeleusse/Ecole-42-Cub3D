@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:52:30 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:13:50 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 #include <math.h>
 
 void	dda_calcul(t_game *game);
-void	draw_text(t_game *game, int	texdir, int x, int y);
-
+void	draw_text(t_game *game, int texdir, int x, int y);
 
 static void	raycasting_one(t_game *game, t_ray *ray)
 {
 	t_vector	position;
 	t_vector	standard;
 
-	standard = generateNewVector(WIN_H / 100, WIN_W / 100);
+	standard = generate_new_vector(WIN_H / 100, WIN_W / 100);
 	ray->rdx = ray->dir_x + ray->plane_x * ray->camera_x;
 	ray->rdy = ray->dir_y + ray->plane_y * ray->camera_x;
 	ray->map_x = (int)ray->pos_x;
 	ray->map_y = (int)ray->pos_y;
-	position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
-	fillPlayer(game->minimap, position, standard);
+	position = generate_new_vector(game->rayon->map_y, game->rayon->map_x);
+	fill_player(game->minimap, position, standard);
 	ray->side_dist_x = 0;
 	ray->side_dist_y = 0;
 	ray->delta_dist_x = fabs(1 / ray->rdx);
@@ -92,8 +91,7 @@ static void	draw_line(t_game *game, t_ray *ray, int x)
 	while (++ray->draw_start < ray->draw_end)
 	{
 		if (ray->draw_start < ray->h && x < ray->w)
-			// my_mlx_pixel_put(game, x, ray->draw_start, ray->color);
-			draw_text(game, game->texdir,x, ray->draw_start);
+			draw_text(game, game->texdir, x, ray->draw_start);
 	}
 	while (ground > 1)
 	{

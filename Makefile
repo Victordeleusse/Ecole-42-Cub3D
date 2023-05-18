@@ -17,7 +17,8 @@ define SRCS :=
 	raycasting/Raycasting.c
 	raycasting/DdaCalcul.c
 	GetMapData.c
-	Minimap.c
+	Minimap1.c
+	Minimap2.c
 	KeyAction.c
 	Movements.c
 	MyMiniLibx.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:14:07 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:18:59 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@
 # ifndef WIN_W
 #  define WIN_W 1000
 # endif
-
-#define texWidth 64
-#define texHeight 64
 
 // KEYS_CODE //
 
@@ -109,7 +106,7 @@ typedef struct s_ray
 	double					movespeed;
 	double					rotspeed;
 	double					old_dir_x;
-	double 					old_plane_x;
+	double					old_plane_x;
 }	t_ray;
 
 typedef struct s_map2D
@@ -117,7 +114,7 @@ typedef struct s_map2D
 	char	**map;
 	int		width;
 	int		height;
-	int 	fd;
+	int		fd;
 }	t_map2D;
 
 typedef struct s_minimap
@@ -169,70 +166,73 @@ typedef struct s_game
 	t_text			*south;
 	t_text			*west;
 	t_text			*east;
-} t_game;
+}	t_game;
 
 ////////////////// Init.c //////////////////
 
-int		get_player_position(char **map, t_ray *player);
-void	get_map_data(t_game *game);
+int			get_player_position(char **map, t_ray *player);
+void		get_map_data(t_game *game);
 
 ////////////////// Minimap.c //////////////////
 
-void	init_minimap(t_minimap *minimap, t_game *game);
-t_vector	generateNewVector(int pos_x, int pos_y);
-void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
-void	fillPlayer(t_minimap *minimap, t_vector position, t_vector standardDimension);
-void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension);
-void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension);
-void	fillAreaAgain(t_minimap *minimap, t_vector position, t_vector standardDimension);
-void	fillMinimap(t_game *game);
-void	fillMinimapAgain(t_game *game);
+void		init_minimap(t_minimap *minimap, t_game *game);
+t_vector	generate_new_vector(int pos_x, int pos_y);
+void		my_mlx_pixel_put_minimap(t_minimap *minimap, \
+			int x, int y, int color);
+void		fill_player(t_minimap *minimap, t_vector position, \
+			t_vector standardDimension);
+void		fill_area(t_minimap *minimap, t_vector position, \
+			t_vector standardDimension);
+void		fill_line(t_minimap *minimap, t_vector position, \
+			t_vector standardDimension);
+void		fill_area_again(t_minimap *minimap, t_vector position, \
+			t_vector standardDimension);
+void		fill_minimap(t_game *game);
+void		fill_minimap_again(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 
-char	*strip_l(char *line);
-int		parse_texture(t_game *game, char *line, t_text *elem, int case_n);
-int		parsing(t_game *game, char *file);
-void	parsing_error(char *text);
-int		parse_color(char *line, int *elem, int case_n);
+char		*strip_l(char *line);
+int			parse_texture(t_game *game, char *line, t_text *elem, int case_n);
+int			parsing(t_game *game, char *file);
+void		parsing_error(char *text);
+int			parse_color(char *line, int *elem, int case_n);
 
-int		is_dir(char c);
-int		parse_data(t_game *game, int fd);
+int			is_dir(char c);
+int			parse_data(t_game *game, int fd);
 
+int			is_map_and_player_check(t_map2D *map2D);
 
-int	is_map_and_player_check(t_map2D *map2D);
-
-int	getColors(t_game *game, char *file);
-int	create_trgb(int t, int r, int g, int b);
+int			getColors(t_game *game, char *file);
+int			create_trgb(int t, int r, int g, int b);
 
 ////////////////// Textures.c //////////////////
 
-void	draw_text(t_game *game, int	texdir, int x, int y);
-void	choose_tex_ray(t_game *game);
+void		draw_text(t_game *game, int texdir, int x, int y);
+void		choose_tex_ray(t_game *game);
 
 ////////////////// MyMiniLibx.c //////////////////
 
-void	init_game(t_game *game);
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	ft_clear_window(t_game *game);
-int		ft_get_transfo(int key, t_game *game);
-void	ft_mlx_pack(t_game *game);
+void		init_game(t_game *game);
+void		my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void		ft_clear_window(t_game *game);
+int			ft_get_transfo(int key, t_game *game);
+void		ft_mlx_pack(t_game *game);
 
 ////////////////// Raycasting.c //////////////////
 
-void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
+void		raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 
 ////////////////// Action.c //////////////////
 
-int		ft_key_action(int keycode, t_game *game);
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	move_right(t_game *game);
-void	move_left(t_game *game);
+int			ft_key_action(int keycode, t_game *game);
+void		move_forward(t_game *game);
+void		move_backward(t_game *game);
+void		move_right(t_game *game);
+void		move_left(t_game *game);
 
 ////////////////// Free.c //////////////////
 
-int	free_and_quit(t_game *game);
-
+int			free_and_quit(t_game *game);
 
 #endif

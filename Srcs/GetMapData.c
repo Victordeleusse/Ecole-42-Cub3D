@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 19:08:26 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:42:32 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,27 @@ static void	get_player_direction(t_ray *ray)
 	ray->dir_x = 0;
 	ray->plane_x = 0;
 	ray->plane_y = 0;
-	ray->old_plane_x = 0;
 	ray->old_dir_x = 0;
-	if (ray->dir == 'N' || ray->dir == 'W')
+	if (ray->dir == 'N')
+	{	
 		ray->dir_x = -1;
-	else if (ray->dir == 'S' || ray->dir == 'E')
-		ray->dir_x = 1;
-	if (ray->dir == 'N' || ray->dir == 'E')
 		ray->plane_y = 0.66;
-	else if (ray->dir == 'S' || ray->dir == 'W')
+	}
+	else if (ray->dir == 'S')
+	{	
+		ray->dir_x = 1;
+		ray->plane_y = -0.66;
+	}
+	else if (ray->dir == 'E')
+	{	
+		ray->dir_y = 1;
+		ray->plane_x = 0.66;
+	}
+	else if (ray->dir == 'W')
+	{	
+		ray->dir_y = -1;
 		ray->plane_x = -0.66;
+	}
 }
 
 int	get_player_position(char **map, t_ray *player)
@@ -74,6 +85,7 @@ int	get_player_position(char **map, t_ray *player)
 			|| map[(int)player->pos_x][(int)player->pos_y] == 'W')
 			{	
 				player->dir = map[(int)player->pos_x][(int)player->pos_y];
+				player->old_plane_x = 0;
 				get_player_direction(player);
 				map[(int)player->pos_x][(int)player->pos_y] = '0';
 				return (1);

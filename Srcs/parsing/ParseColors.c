@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseColors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:47:20 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:14:07 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	parse_color(char *line, int *elem, int case_n)
 	*elem = atoi_colors(line);
 	if (*elem == -1)
 		return (parsing_error(line), 0);
-	printf("line: %s | sky: %x\n | ground : %x | case: %x | *elem = %x | elem = %p\n", line, 0, 0, case_n, *elem, elem);
 	return (1);
 }
 
