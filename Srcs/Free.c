@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 15:48:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:11:33 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:45:54 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ static void	free_map2D(t_map2D *map2D)
 	int	i;
 
 	i = 0;
-	while (map2D->map[i])
+	if (!map2D)
+		return ;
+	if (map2D->map)
 	{
-		free(map2D->map[i]);
-		i++;
+		while (map2D->map[i])
+		{
+			free(map2D->map[i]);
+			i++;
+		}
+		free(map2D->map);
 	}
-	free(map2D->map);
 	free(map2D);
 }
 
