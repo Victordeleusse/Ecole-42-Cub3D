@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:26:34 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/18 13:49:21 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:03:26 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,13 @@ static int	init_parsing(t_game *game, char *file)
 
 	game->buffer_map = malloc(sizeof(char) * 1);
 	game->buffer_map[0] = '\0';
-	game->north = NULL;
-	game->south = NULL;
-	game->west = NULL;
-	game->east = NULL;
 	game->north = malloc(sizeof(t_minimap));
 	game->south = malloc(sizeof(t_minimap));
 	game->west = malloc(sizeof(t_minimap));
 	game->east = malloc(sizeof(t_minimap));
 	if (!game->north || !game->south || !game->west || !game->east \
 	|| !game->buffer_map)
-		return (ft_putstr_fd("Error\n" "malloc failed.\n", 2), -1);
+		return (ft_putstr_fd("Error\n"RED"malloc failed."ENDCL"\n", 2), -1);
 	game->north->image = NULL;
 	game->north->addr = NULL;
 	game->south->image = NULL;
@@ -79,11 +75,16 @@ static int	init_parsing(t_game *game, char *file)
 int	parsing(t_game *game, char *file)
 {
 	int	fd;
+	int	len;
 
-	game->map->map = NULL;
 	fd = init_parsing(game, file);
 	if (fd == -1)
-		return (0);
+		return (ft_putstr_fd("Error\n"RED"Could not open file."ENDCL \
+		"\n", 2), 0);
+	len = ft_strlen(file);
+	if (len < 5 || ft_strcmp(".cub", file + len - 4) != 0)
+		return (ft_putstr_fd("Error\n"RED"Incorrect file extension."ENDCL \
+		"\n", 2), close(fd), 0);
 	if(!parse_data(game, fd) || !isMapAndPlayerCheck(game->map))
 		return (close(fd), 0);
 	print_data(game);

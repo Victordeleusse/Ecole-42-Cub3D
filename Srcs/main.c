@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:28:45 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:11:19 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 int	init_mlx(t_game *game)
 {
+	game->buffer_map = NULL;
+	game->north = NULL;
+	game->south = NULL;
+	game->west = NULL;
+	game->east = NULL;
 	game->window = NULL;
 	game->image = NULL;
 	game->addr = NULL;
 	game->minimap->image = NULL;
 	game->minimap->addr = NULL;
-	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
 	game->image = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	game->minimap->image = mlx_new_image(game->mlx, WIN_W / 2, WIN_H / 3);
+	if (!game->image || !game->minimap->image)
+		return (0);
 	game->addr = mlx_get_data_addr(game->image, &game->bpp, \
 		&game->line_length,&game->endian);
-	game->minimap->image = mlx_new_image(game->mlx, WIN_W / 2, WIN_H / 3);
 	game->minimap->addr = mlx_get_data_addr(game->minimap->image, \
 		&game->minimap->bpp, &game->minimap->line_length, &game->minimap->endian);
-	if (!game->window || !game->image || !game->addr)
-	{
-		free(game->window);
-		free(game->image);
-		free(game->addr);
+	if (!game->addr || !game->minimap->addr)
 		return (0);
-	}
 	return (1);
 }
 
@@ -59,6 +60,7 @@ t_game	*init_allocs(void)
 	game->rayon = ray;
 	game->map = map2D;
 	game->minimap = minimap;
+	game->map->map = NULL;
 	return (game);
 }
 
@@ -75,6 +77,7 @@ int	main(int argc, char **argv)
 	get_map_data(game);
 	if (!get_player_position(game->map->map, game->rayon))
 		return (free_and_quit(game), 1);
+	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
 	ft_mlx_pack(game);
 	return (0);
 }

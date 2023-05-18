@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ParsingMap2.c                                      :+:      :+:    :+:   */
+/*   ParseMap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:23:49 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:16:41 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:10:24 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ static int	isWellClosed(t_map2D *map2D)
 int	isMapAndPlayerCheck(t_map2D *map2D)
 {
 	if (!isOnlyOnePlayer(map2D) || !isWellClosed(map2D))
-		return (ft_putstr_fd("Error\n" "Parsing failed : "RED"incorrect map format"ENDCL".\n", 2), 0);
+		return (ft_putstr_fd("Error\n" "Parsing failed : "RED"incorrect map format."ENDCL"\n", 2), 0);
 	return (1);
 }
