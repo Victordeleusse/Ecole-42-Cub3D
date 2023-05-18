@@ -1,4 +1,4 @@
-Objs/Raycasting.o: Srcs/Raycasting.c Includes/Cub.h \
+Objs/raycasting/DdaCalcul.o: Srcs/raycasting/DdaCalcul.c Includes/Cub.h \
   Libft_vde-leus/libft.h Libft_vde-leus/libft_old.h \
   Libft_vde-leus/get_next_line.h Libft_vde-leus/ft_printf.h \
   minilibx-linux/mlx.h minilibx-linux/mlx_int.h
