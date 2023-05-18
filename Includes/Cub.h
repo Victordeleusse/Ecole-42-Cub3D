@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:17:03 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:29:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@
 # include "mlx_int.h"
 
 # ifndef WIN_H
-#  define WIN_H 720
+#  define WIN_H 1100
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 720
-# endif
-
-# ifndef SIZE
-#  define SIZE 10
+#  define WIN_W 1500
 # endif
 
 // KEYS_CODE //
