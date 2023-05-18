@@ -6,56 +6,23 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:17:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:52:30 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 #include <math.h>
 
-static void	raycasting_one(t_game *game,t_ray *ray);
-static void	raycasting_two(t_ray *ray);
-static void	dda_calcul(t_game *game);
-static void	raycasting_last(t_ray *ray);
-static void	choose_color(t_ray *ray, t_map2D *map2D);
-static void	draw_line(t_game *game, t_ray *ray, int x);
+void	dda_calcul(t_game *game);
+void	draw_text(t_game *game, int	texdir, int x, int y);
 
-
-static void	ft_verline(t_game *game, int x, t_ray *ray)
-{
-	if (ray->draw_start < ray->draw_end)
-	{
-		choose_tex_ray(game);
-		draw_line(game, ray, x);
-		ray->draw_start++;
-	}
-}
-
-void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D)
-{
-	int	x;
-
-	(void)map2D;
-	x = 0;
-	while (x < ray->w)
-	{
-		ray->camera_x = 2.0 * x / (double)ray->w - 1.0;
-		raycasting_one(game, ray);
-		raycasting_two(ray);
-		dda_calcul(game);
-		raycasting_last(ray);
-		choose_color(ray, map2D);
-		ft_verline(game, x, ray);
-		x++;
-	}
-}
 
 static void	raycasting_one(t_game *game, t_ray *ray)
 {
 	t_vector	position;
 	t_vector	standard;
-	
-	standard = generateNewVector( WIN_H /100, WIN_W /100);
+
+	standard = generateNewVector(WIN_H / 100, WIN_W / 100);
 	ray->rdx = ray->dir_x + ray->plane_x * ray->camera_x;
 	ray->rdy = ray->dir_y + ray->plane_y * ray->camera_x;
 	ray->map_x = (int)ray->pos_x;
@@ -97,49 +64,6 @@ static void	raycasting_two(t_ray *ray)
 	}
 }
 
-static void	dda_calcul(t_game *game)
-{
-	t_vector	standard;
-	t_vector	position;
-	double		arrondi;
-	
-	standard = generateNewVector( WIN_H /100, WIN_W /100);
-	while (game->rayon->hit == 0)
-	{
-		if (game->rayon->side_dist_x < game->rayon->side_dist_y)
-		{
-			game->rayon->side_dist_x += game->rayon->delta_dist_x;
-			game->rayon->map_x += game->rayon->step_x;
-			game->rayon->side = 0;
-		}
-		else
-		{
-			game->rayon->side_dist_y += game->rayon->delta_dist_y;
-			game->rayon->map_y += game->rayon->step_y;
-			game->rayon->side = 1;
-		}
-		if (game->map->map[game->rayon->map_x][game->rayon->map_y] == '1')
-			game->rayon->hit = 1;		
-		else
-		{
-			if (game->rayon->side == 0)
-			{
-				arrondi = round(game->rayon->dir_x * 100) / 100;
-				if (arrondi > 0.80 || arrondi < -0.80)
-				{
-					position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
-					fillLine(game->minimap, position, standard);	
-				}
-			}
-			else if (game->rayon->side == 1)
-			{
-				position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
-				fillLine(game->minimap, position, standard);
-			}
-		}
-	}
-}
-
 static void	raycasting_last(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -157,21 +81,13 @@ static void	raycasting_last(t_ray *ray)
 		ray->draw_end = ray->h - 1;
 }
 
-static void	choose_color(t_ray *ray, t_map2D *map2D)
-{
-	if (map2D->map[ray->map_x][ray->map_y] == '1')
-		ray->color = RGB_RED;
-	else if (map2D->map[ray->map_x][ray->map_y] == '2')
-		ray->color = RGB_BLUE;
-	else 
-		ray->color = 0xFFF00FFF;
-}
-
 static void	draw_line(t_game *game, t_ray *ray, int x)
 {
-	int	ground = ray->draw_start - 1;
-	int sky = ray->draw_end;
+	int	ground;
+	int	sky;
 
+	ground = ray->draw_start - 1;
+	sky = ray->draw_end;
 	ray->draw_start = ray->draw_start - 1;
 	while (++ray->draw_start < ray->draw_end)
 	{
@@ -180,14 +96,42 @@ static void	draw_line(t_game *game, t_ray *ray, int x)
 			draw_text(game, game->texdir,x, ray->draw_start);
 	}
 	while (ground > 1)
-	{	
-		my_mlx_pixel_put(game, x, ground, 0xFFafebff);
+	{
+		my_mlx_pixel_put(game, x, ground, game->sky_color);
 		ground--;
 	}
 	while (sky <= ray->h)
 	{
-		my_mlx_pixel_put(game, x, sky, 0xFF006500);
+		my_mlx_pixel_put(game, x, sky, game->ground_color);
 		sky++;
 	}
 }
 
+void	raycasting(t_game *game, t_ray *ray, t_map2D *map2d)
+{
+	int	x;
+
+	(void)map2d;
+	x = 0;
+	while (x < ray->w)
+	{
+		ray->camera_x = 2.0 * x / (double)ray->w - 1.0;
+		raycasting_one(game, ray);
+		raycasting_two(ray);
+		dda_calcul(game);
+		raycasting_last(ray);
+		if (map2d->map[ray->map_x][ray->map_y] == '1')
+			ray->color = RGB_RED;
+		else if (map2d->map[ray->map_x][ray->map_y] == '2')
+			ray->color = RGB_BLUE;
+		else
+			ray->color = 0xFFF00FFF;
+		if (ray->draw_start < ray->draw_end)
+		{
+			choose_tex_ray(game);
+			draw_line(game, ray, x);
+			ray->draw_start++;
+		}
+		x++;
+	}
+}

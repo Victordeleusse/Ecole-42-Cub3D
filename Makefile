@@ -14,12 +14,13 @@ define SRCS :=
 	parsing/ParseTextures.c
 	parsing/ParseColors.c
 	parsing/ParseMap.c
+	raycasting/Raycasting.c
+	raycasting/DdaCalcul.c
 	GetMapData.c
 	Minimap.c
 	KeyAction.c
 	Movements.c
 	MyMiniLibx.c
-	Raycasting.c
 	parsing/Parsing.c
 	Free.c
 	Textures.c
