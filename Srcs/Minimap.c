@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:41:24 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:43:57 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension)
 	color = 0xFF000000;
 	zoom_h = ((WIN_H / 3) / minimap->map->height) - 1;
 	zoom_w = ((WIN_W / 3) / minimap->map->width) - 1;
-	// printf("minimap->map->map[%d][%d]\n", position.y, position.x);
 	if (!minimap->map->map[position.y][position.x])
 		return ;
 	if (minimap->map->map[position.y][position.x] == '1')
