@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 12:20:17 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:44:43 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	raycasting_one(t_game *game, t_ray *ray)
 	t_vector	position;
 	t_vector	standard;
 	
-	standard = generateNewVector(WIN_H /100, WIN_W /100);
+	standard = generateNewVector( WIN_H /100, WIN_W /100);
 	ray->rdx = ray->dir_x + ray->plane_x * ray->camera_x;
 	ray->rdy = ray->dir_y + ray->plane_y * ray->camera_x;
 	ray->map_x = (int)ray->pos_x;
@@ -102,7 +102,7 @@ static void	dda_calcul(t_game *game)
 	t_vector	position;
 	double		arrondi;
 	
-	standard = generateNewVector(WIN_H /100, WIN_W /100);
+	standard = generateNewVector( WIN_H /100, WIN_W /100);
 	while (game->rayon->hit == 0)
 	{
 		if (game->rayon->side_dist_x < game->rayon->side_dist_y)

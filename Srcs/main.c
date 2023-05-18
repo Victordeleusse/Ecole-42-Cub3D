@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 11:41:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:18:28 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 	initAll(game, map2D, ray, minimap);
 	if (!get_player_position(map2D->map, ray))
 		return (dprintf(2, "ERROR MAP\n"), 1);
-	dprintf(2, "Height : %d || Width : %d\n", game->map->height, game->map->width);
 	ft_mlx_pack(game);
 	fillMinimap(game);
 	return (0);
