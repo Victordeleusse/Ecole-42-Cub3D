@@ -6,11 +6,12 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 17:45:22 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:20:17 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
+#include <math.h>
 
 static void	raycasting_one(t_game *game,t_ray *ray);
 static void	raycasting_two(t_ray *ray);
@@ -53,7 +54,7 @@ static void	raycasting_one(t_game *game, t_ray *ray)
 	t_vector	position;
 	t_vector	standard;
 	
-	standard = generateNewVector(SIZE, SIZE);
+	standard = generateNewVector(WIN_H /100, WIN_W /100);
 	ray->rdx = ray->dir_x + ray->plane_x * ray->camera_x;
 	ray->rdy = ray->dir_y + ray->plane_y * ray->camera_x;
 	ray->map_x = (int)ray->pos_x;
@@ -99,8 +100,9 @@ static void	dda_calcul(t_game *game)
 {
 	t_vector	standard;
 	t_vector	position;
+	double		arrondi;
 	
-	standard = generateNewVector(SIZE, SIZE);
+	standard = generateNewVector(WIN_H /100, WIN_W /100);
 	while (game->rayon->hit == 0)
 	{
 		if (game->rayon->side_dist_x < game->rayon->side_dist_y)
@@ -119,8 +121,20 @@ static void	dda_calcul(t_game *game)
 			game->rayon->hit = 1;		
 		else
 		{
-			position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
-			fillLine(game->minimap, position, standard);
+			if (game->rayon->side == 0)
+			{
+				arrondi = round(game->rayon->dir_x * 100) / 100;
+				if (arrondi > 0.80 || arrondi < -0.80)
+				{
+					position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
+					fillLine(game->minimap, position, standard);	
+				}
+			}
+			else if (game->rayon->side == 1)
+			{
+				position = generateNewVector(game->rayon->map_y, game->rayon->map_x);
+				fillLine(game->minimap, position, standard);
+			}
 		}
 	}
 }

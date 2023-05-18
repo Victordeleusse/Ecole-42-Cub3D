@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MyMiniLibx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:46:47 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:03:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	ft_draw(t_game *game)
 int	ft_get_transfo(int key, t_game *game)
 {	
 	ft_key_action(key, game);
-	dprintf(2, "change detected\n");
 	ft_draw(game);
 	return (0);
 }

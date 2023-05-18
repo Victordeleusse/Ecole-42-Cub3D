@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:48:02 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:41:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ int	main(int argc, char **argv)
 	initAll(game, map2D, ray, minimap);
 	if (!get_player_position(map2D->map, ray))
 		return (dprintf(2, "ERROR MAP\n"), 1);
+	dprintf(2, "Height : %d || Width : %d\n", game->map->height, game->map->width);
 	ft_mlx_pack(game);
 	fillMinimap(game);
-	// raycasting(game, ray, map2D);
-	// mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);
-	// mlx_loop(game->mlx);
-	// // free_all(map2D, ray, game);
 	return (0);
 }
