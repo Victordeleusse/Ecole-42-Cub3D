@@ -10,6 +10,7 @@ LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 
 define SRCS :=
 	main.c
+	parsing/Parsing.c
 	parsing/ParseData.c
 	parsing/ParseTextures.c
 	parsing/ParseColors.c
@@ -22,9 +23,8 @@ define SRCS :=
 	KeyAction.c
 	Movements.c
 	MyMiniLibx.c
-	parsing/Parsing.c
-	Free.c
 	Textures.c
+	Free.c
 endef
 
 SRCS_PATH = Srcs
@@ -37,6 +37,8 @@ DEPS = $(OBJS:.o=.d)
 
 
 all: ${NAME} ./cub3D
+
+bonus: ${NAME} ./cub3D
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 		mkdir -p ${dir $@}
@@ -64,6 +66,6 @@ run: ${NAME}
 	@	clear
 	@	-./${NAME}
 
-.PHONY: clean fclean re 
+.PHONY: all valgrind clean fclean re run bonus
 
 -include $(DEPS)
