@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 19:23:29 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:26:47 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	end_it(t_game *game)
 	exit(0);
 }
 
-t_game	*ft_init(void)
+t_game	*game_init(void)
 {
 	t_map2D		*map2D;
 	t_ray		*ray;
@@ -48,13 +48,12 @@ int	main(int argc, char **argv)
 {
 	t_game		*game;
 
-	game = ft_init();
+	(void) argc;
+	game = game_init();
 	if (!game)
+		return (ft_putstr_fd("Error\n" "Memory allocation failed.\n", 2), 1);
+	if (!parsing(game, argv[1]))
 		return (1);
-	(void)argc;
-	ft_init();
-	if (!fillTheTab(game, argv[1]) || !isMapAndPlayerCheck(game->map))
-		return(dprintf(2, "Need to free.\n"), 1);
 	initAll(game);
 	if (!get_player_position(game->map->map, game->rayon))
 		return (dprintf(2, "ERROR MAP\n"), 1);

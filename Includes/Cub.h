@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 19:07:58 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:32:14 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +170,11 @@ void	fillMinimap(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 
+int		parsing(t_game *game, char *file);
 void	free_parsing(t_game *game);
 
 int	isDir(char c);
-int	fillTheTab(t_game *game, char *file);
+int	fillTheTab(t_game *game, int fd);
 
 
 int	isMapAndPlayerCheck(t_map2D *map2D);

@@ -6,35 +6,11 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:25:48 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:49:16 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:36:12 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
-
-void	ft_printtab(char **tab)
-{
-	size_t	i;
-
-	if (!tab)
-	{
-		printf("tab: "BLUEBG"(nil)"ENDCL"\n");
-		return ;
-	}
-	i = 0;
-	while (tab[i])
-	{
-		printf("%2zu: "BLUEBG"%s"ENDCL"\n", i, tab[i]);
-		i++;
-	}
-}
-
-int	isDir(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
-}
 
 int	good_extension(char *line)
 {
@@ -153,52 +129,6 @@ int	parse_color(char *line, int *elem, int case_n)
 	return (1);
 }
 
-void	free_parsing(t_game *game)
-{
-	free(game->buffer_map);
-	if (game->north && game->north->image)
-		mlx_destroy_image(game->mlx, game->north->image);
-	free(game->north);
-	if (game->south && game->south->image)
-		mlx_destroy_image(game->mlx, game->south->image);
-	free(game->south);
-	if (game->west && game->west->image)
-		mlx_destroy_image(game->mlx, game->west->image);
-	free(game->west);
-	if (game->east && game->east->image)
-		mlx_destroy_image(game->mlx, game->east->image);
-	free(game->east);
-}
-
-int	init_parsing(t_game *game, char *file)
-{
-	int	fd;
-
-	game->buffer_map = malloc(sizeof(char) * 1);
-	game->buffer_map[0] = '\0';
-	game->north = NULL;
-	game->south = NULL;
-	game->west = NULL;
-	game->east = NULL;
-	game->north = malloc(sizeof(t_minimap));
-	game->south = malloc(sizeof(t_minimap));
-	game->west = malloc(sizeof(t_minimap));
-	game->east = malloc(sizeof(t_minimap));
-	if (!game->north || !game->south || !game->west || !game->east \
-	|| !game->buffer_map)
-		return (ft_putstr_fd("Error\n" "malloc failed.\n", 2), -1);
-	game->north->image = NULL;
-	game->north->addr = NULL;
-	game->south->image = NULL;
-	game->south->addr = NULL;
-	game->west->image = NULL;
-	game->west->addr = NULL;
-	game->east->image = NULL;
-	game->east->addr = NULL;
-	fd = open(file, O_RDONLY);
-	return (fd);
-}
-
 int	parse_map(t_game *game, char *line)
 {
 	char	*buffer;
@@ -240,44 +170,22 @@ int	parse_line(t_game *game, char *line)
 	return (1);
 }
 
-void	print_data(t_game *game)
-{
-	printf(GREEN"Parsing data"ENDCL"\n");
-	printf("\n");
-	printf("NO: %p\n", game->north);
-	printf("SO: %p\n", game->south);
-	printf("WE: %p\n", game->west);
-	printf("EA: %p\n", game->east);
-	printf("\n");
-	printf("F: #%x\n", game->ground_color);
-	printf("C: #%x\n", game->sky_color);
-	printf("\n");
-	ft_printtab(game->map->map);
-}
-
-int	fillTheTab(t_game *game, char *file)
+int	fillTheTab(t_game *game, int fd)
 {
 	char	*line;
-	int		fd;
 
-	game->map->map = NULL;
-	fd = init_parsing(game, file);
-	if (fd == -1)
-		return (0);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (!parse_line(game, line))
-			return (free(line), close(fd), 0);
+			return (free(line), 0);
 		free(line);
 	}
-	close(fd);
 	game->map->map = ft_split(game->buffer_map, '\n');
 	if (!game->map->map)
 		return (0);
-	print_data(game);
 	return (1);
 }
 
