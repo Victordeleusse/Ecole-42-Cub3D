@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:41:16 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:33:15 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:36:27 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,14 @@ void	draw_text(t_game *game, int	texdir, int x, int y)
 	if (game->rayon->side == 1 && game->rayon->rdy < 0)
 		tex->tex_x = tex->width - tex->tex_x - 1;
 	tex->texpos = (y - game->rayon->h / 2 + game->rayon->line_height / 2) * tex->step;
-	// while (++y <= game->rayon->draw_end)
+	tex->texpos += tex->step;
+	tex->tex_y = (int)tex->texpos & (tex->height - 1);
+	i = tex->tex_y * tex->line_length + tex->tex_x * (tex->bpp / 8);
 	{
-		tex->texpos += tex->step;
-		tex->tex_y = (int)tex->texpos & (tex->height - 1);
-		i = tex->tex_y * tex->line_length + tex->tex_x * (tex->bpp / 8);
-		// if (y < game->rayon->h && x < game->rayon->w)
-		{
-			my_mlx_pixel_put(game, x, y, create_trgb(0,
-					(int)(unsigned char)tex->addr[i + 2],
-					(int)(unsigned char)tex->addr[i + 1],
-					(int)(unsigned char)tex->addr[i]));
-		}
+		my_mlx_pixel_put(game, x, y, create_trgb(0,
+				(int)(unsigned char)tex->addr[i + 2],
+				(int)(unsigned char)tex->addr[i + 1],
+				(int)(unsigned char)tex->addr[i]));
 	}
 }
 
