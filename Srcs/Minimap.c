@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:27:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:41:24 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	init_minimap(t_minimap *minimap, t_game *game)
 	minimap->rayon = game->rayon;
 	minimap->width = game->map->width;
 	minimap->height = game->map->height;
-	// minimap->image = mlx_new_image(game->mlx, WIN_W / 3, WIN_H / 3);
-	// minimap->addr = mlx_get_data_addr(minimap->image, &minimap->bpp, &minimap->line_length,
-	// 							&minimap->endian);
 }
 
 void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color)
@@ -100,6 +97,7 @@ void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension)
 	color = 0xFF000000;
 	zoom_h = ((WIN_H / 3) / minimap->map->height) - 1;
 	zoom_w = ((WIN_W / 3) / minimap->map->width) - 1;
+	// printf("minimap->map->map[%d][%d]\n", position.y, position.x);
 	if (!minimap->map->map[position.y][position.x])
 		return ;
 	if (minimap->map->map[position.y][position.x] == '1')
@@ -133,7 +131,7 @@ void	fillMinimap(t_game *game)
 	while (j < game->minimap->height)
 	{
 		i = 0;
-		while (i < game->minimap->width)
+		while (game->map->map[j][i])
 		{
 			position = generateNewVector(i, j);
 			fillArea(game->minimap, position, standard);
