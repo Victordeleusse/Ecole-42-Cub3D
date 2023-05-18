@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:12:11 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 16:45:26 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:36:18 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	rotate_right(t_game *game)
 {
-	// game->rayon->plane_x = 0;
 	game->rayon->old_dir_x = game->rayon->dir_x;
 	game->rayon->dir_x = game->rayon->dir_x \
 	* cos(-game->rayon->rotspeed) - game->rayon->dir_y \
@@ -67,4 +66,3 @@ int	ft_key_action(int keycode, t_game *game)
 		free_and_quit(game);
 	return (0);
 }
-	

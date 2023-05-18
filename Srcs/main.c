@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 17:25:55 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:37:28 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	init_mlx(t_game *game)
 	if (!game->image || !game->minimap->image)
 		return (0);
 	game->addr = mlx_get_data_addr(game->image, &game->bpp, \
-		&game->line_length,&game->endian);
+	&game->line_length, &game->endian);
 	game->minimap->addr = mlx_get_data_addr(game->minimap->image, \
-		&game->minimap->bpp, &game->minimap->line_length, &game->minimap->endian);
+	&game->minimap->bpp, &game->minimap->line_length, &game->minimap->endian);
 	if (!game->addr || !game->minimap->addr)
 		return (0);
 	return (1);
@@ -39,7 +39,7 @@ int	init_mlx(t_game *game)
 
 t_game	*init_allocs(void)
 {
-	t_map2D		*map2D;
+	t_map2D		*map2d;
 	t_ray		*ray;
 	t_game		*game;
 	t_minimap	*minimap;
@@ -48,17 +48,17 @@ t_game	*init_allocs(void)
 	game = (t_game *)malloc(sizeof(t_game));
 	ray = NULL;
 	ray = (t_ray *)malloc(sizeof(t_ray));
-	map2D = NULL;
-	map2D = (t_map2D *)malloc(sizeof(t_map2D));
+	map2d = NULL;
+	map2d = (t_map2D *)malloc(sizeof(t_map2D));
 	minimap = NULL;
 	minimap = (t_minimap *)malloc(sizeof(t_minimap));
-	if (!game || !ray || ! map2D || !minimap)
-		return (free(game), free(ray), free(map2D), free(minimap), NULL);
+	if (!game || !ray || ! map2d || !minimap)
+		return (free(game), free(ray), free(map2d), free(minimap), NULL);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		return (free(game), free(ray), free(map2D), free(minimap), NULL);
+		return (free(game), free(ray), free(map2d), free(minimap), NULL);
 	game->rayon = ray;
-	game->map = map2D;
+	game->map = map2d;
 	game->minimap = minimap;
 	game->map->map = NULL;
 	return (game);
