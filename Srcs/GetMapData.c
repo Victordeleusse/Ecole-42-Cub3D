@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:35:58 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:08:26 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	get_player_position(char **map, t_ray *player)
 				player->dir = map[(int)player->pos_x][(int)player->pos_y];
 				get_player_direction(player);
 				map[(int)player->pos_x][(int)player->pos_y] = '0';
-				player->pos_x += 0.5;
-				player->pos_y += 0.5;
 				return (1);
 			}
 			player->pos_y++;

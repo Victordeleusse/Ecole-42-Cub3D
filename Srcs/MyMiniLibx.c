@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 18:34:36 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:00:01 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 static void	ft_draw(t_game *game)
 {
-	fillMinimap(game);
+	// fillMinimap(game);
 	raycasting(game, game->rayon, game->map);
-	fillMinimapAgain(game);
+	// fillMinimapAgain(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->image, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, \
-	0, 0);
+	// mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, \
+	// 0, 0);
 }
 
 int	ft_get_transfo(int key, t_game *game)
