@@ -6,19 +6,11 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:46:47 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:10:48 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
-
-void	init_game(t_game *game)
-{
-	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
-	game->image = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->addr = mlx_get_data_addr(game->image, &game->bpp, &game->line_length,
-								&game->endian);
-}
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
@@ -47,7 +39,7 @@ int	ft_get_transfo(int key, t_game *game)
 void	ft_mlx_pack(t_game *game)
 {
 	ft_draw(game);
-	mlx_hook(game->window, 17, 0, &end_it, game);
+	mlx_hook(game->window, 17, 0, &free_and_quit, game);
 	mlx_hook(game->window, 2, 1L << 0, &ft_get_transfo, game);
 	mlx_loop(game->mlx);
 }

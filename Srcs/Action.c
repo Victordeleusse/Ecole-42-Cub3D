@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:12:11 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 18:39:28 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:10:48 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_key_action(int keycode, t_game *game)
 		game->rayon->plane_y = game->rayon->old_plane_x * sin(game->rayon->rotspeed) + game->rayon->plane_y * cos(game->rayon->rotspeed);
 	}
 	if (keycode == KEY_ESC)
-		end_it(game);
+		free_and_quit(game);
 	return (0);
 }
 	

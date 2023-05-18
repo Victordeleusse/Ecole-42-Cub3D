@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Init.c                                             :+:      :+:    :+:   */
+/*   GetMapData.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:11:40 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/17 19:14:59 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:07:14 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-static void	init_ray(t_ray *ray)
+static void	get_data_ray(t_ray *ray)
 {
 	ray->w = WIN_W;
 	ray->h = WIN_H;
@@ -48,7 +48,7 @@ static int	get_map_width(char **map)
 	return (width);
 }
 
-static void	init_map_2D(t_map2D *map2D)
+static void	get_data_map_2D(t_map2D *map2D)
 {
 	map2D->height = get_map_height(map2D->map);
 	map2D->width = get_map_width(map2D->map);
@@ -108,10 +108,9 @@ int	get_player_position(char **map, t_ray *player)
 	return (0);
 }
 
-void	initAll(t_game *game)
+void	get_map_data(t_game *game)
 {
-	init_game(game);
-	init_map_2D(game->map);
-	init_ray(game->rayon);
+	get_data_map_2D(game->map);
+	get_data_ray(game->rayon);
 	init_minimap(game->minimap, game);
 }

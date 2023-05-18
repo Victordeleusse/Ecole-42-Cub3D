@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:32:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:11:45 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_game
 ////////////////// Init.c //////////////////
 
 int		get_player_position(char **map, t_ray *player);
-void	initAll(t_game *game);
+void	get_map_data(t_game *game);
 
 ////////////////// Minimap.c //////////////////
 
@@ -170,11 +170,14 @@ void	fillMinimap(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 
+char	*strip_l(char *line);
+int		parse_texture(t_game *game, char *line, t_minimap *elem, int case_n);
 int		parsing(t_game *game, char *file);
-void	free_parsing(t_game *game);
+void	parsing_error(char *text);
+int		parse_color(char *line, int *elem, int case_n);
 
 int	isDir(char c);
-int	fillTheTab(t_game *game, int fd);
+int	parse_data(t_game *game, int fd);
 
 
 int	isMapAndPlayerCheck(t_map2D *map2D);
@@ -196,11 +199,10 @@ void	raycasting(t_game *game, t_ray *ray, t_map2D *map2D);
 ////////////////// Action.c //////////////////
 
 int		ft_key_action(int keycode, t_game *game);
-int		end_it(t_game *game);
 
 ////////////////// Free.c //////////////////
 
-void	free_all(t_map2D *map2D, t_ray *ray, t_game *game);
+int	free_and_quit(t_game *game);
 
 
 #endif

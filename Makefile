@@ -10,9 +10,11 @@ LFLAGS = -LLibft_vde-leus -lft -L minilibx-linux -lmlx -lm -lXext -lX11
 
 define SRCS :=
 	main.c
-	ParsingMap.c
-	ParsingMap2.c
-	Init.c
+	ParseData.c
+	ParseTextures.c
+	ParseColors.c
+	ParseMap.c
+	GetMapData.c
 	Minimap.c
 	Action.c
 	MyMiniLibx.c

@@ -6,13 +6,13 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 15:48:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:34:10 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:11:33 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-void	free_parsing(t_game *game)
+static void	free_parsing(t_game *game)
 {
 	free(game->buffer_map);
 	if (game->north && game->north->image)
@@ -29,6 +29,18 @@ void	free_parsing(t_game *game)
 	free(game->east);
 }
 
+static void	free_mlx(t_game *game)
+{
+	if (game->minimap->image)
+		mlx_destroy_image(game->mlx, game->minimap->image);
+	if (game->image)
+		mlx_destroy_image(game->mlx, game->image);
+	if (game->window)
+		mlx_destroy_window(game->mlx, game->window);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+}
+
 static void	free_map2D(t_map2D *map2D)
 {
 	int	i;
@@ -43,9 +55,14 @@ static void	free_map2D(t_map2D *map2D)
 	free(map2D);
 }
 
-void	free_all(t_map2D *map2D, t_ray *ray, t_game *game)
+int	free_and_quit(t_game *game)
 {
-	free_map2D(map2D);
-	free(ray);
+	free_parsing(game);
+	free_mlx(game);
+	free_map2D(game->map);
+	free(game->rayon);
+	free(game->minimap);
+	free(game->mlx);
 	free(game);
+	exit(0);
 }

@@ -6,13 +6,21 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:26:34 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/18 13:36:17 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:49:21 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-void	print_data(t_game *game)
+void	parsing_error(char *text)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Parsing failed : "RED"\"", 2);
+	ft_putstr_fd(text, 2);
+	ft_putstr_fd("\""ENDCL"\n", 2);
+}
+
+static void	print_data(t_game *game)
 {
 	size_t	i;
 
@@ -39,14 +47,7 @@ void	print_data(t_game *game)
 	}
 }
 
-int	isDir(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
-}
-
-int	init_parsing(t_game *game, char *file)
+static int	init_parsing(t_game *game, char *file)
 {
 	int	fd;
 
@@ -83,7 +84,7 @@ int	parsing(t_game *game, char *file)
 	fd = init_parsing(game, file);
 	if (fd == -1)
 		return (0);
-	if(!fillTheTab(game, fd) || !isMapAndPlayerCheck(game->map))
+	if(!parse_data(game, fd) || !isMapAndPlayerCheck(game->map))
 		return (close(fd), 0);
 	print_data(game);
 	return (close(fd), 1);

@@ -6,19 +6,32 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 13:26:47 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:11:57 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub.h"
 
-int	end_it(t_game *game)
+int	init_mlx(t_game *game)
 {
-	(void) game;
-	exit(0);
+	game->window = NULL;
+	game->image = NULL;
+	game->addr = NULL;
+	game->window = mlx_new_window(game->mlx, WIN_W, WIN_H, "map");
+	game->image = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	game->addr = mlx_get_data_addr(game->image, &game->bpp, &game->line_length,
+					&game->endian);
+	if (!game->window || !game->image || !game->addr)
+	{
+		free(game->window);
+		free(game->image);
+		free(game->addr);
+		return (0);
+	}
+	return (1);
 }
 
-t_game	*game_init(void)
+t_game	*init_allocs(void)
 {
 	t_map2D		*map2D;
 	t_ray		*ray;
@@ -49,14 +62,14 @@ int	main(int argc, char **argv)
 	t_game		*game;
 
 	(void) argc;
-	game = game_init();
+	game = init_allocs();
 	if (!game)
 		return (ft_putstr_fd("Error\n" "Memory allocation failed.\n", 2), 1);
-	if (!parsing(game, argv[1]))
-		return (1);
-	initAll(game);
+	if (!init_mlx(game) || !parsing(game, argv[1]))
+		return (free_and_quit(game), 1);
+	get_map_data(game);
 	if (!get_player_position(game->map->map, game->rayon))
-		return (dprintf(2, "ERROR MAP\n"), 1);
+		return (free_and_quit(game), 1);
 	ft_mlx_pack(game);
 	return (0);
 }
