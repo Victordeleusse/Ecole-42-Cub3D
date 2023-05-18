@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 15:29:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:52:10 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_mlx(t_game *game)
 	game->minimap->image = NULL;
 	game->minimap->addr = NULL;
 	game->image = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->minimap->image = mlx_new_image(game->mlx, WIN_W / 2, WIN_H / 3);
+	game->minimap->image = mlx_new_image(game->mlx, WIN_W / 3.1, WIN_H / 3.1);
 	if (!game->image || !game->minimap->image)
 		return (0);
 	game->addr = mlx_get_data_addr(game->image, &game->bpp, \

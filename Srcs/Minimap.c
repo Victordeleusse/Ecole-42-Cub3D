@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:36:31 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 15:29:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:51:40 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	fillPlayer(t_minimap *minimap, t_vector position, t_vector standardDimensio
 	int			zoom_w;
 
 	y_move = 2;
-	zoom_h = ((WIN_H / 3) / minimap->map->height) - 0.2;
-	zoom_w = ((WIN_W / 3) / minimap->map->width) - 0.2;
+	zoom_h = ((WIN_H / 3.1) / minimap->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / minimap->map->width) - 0.2;
 	while (y_move < standardDimension.y - 2)
 	{
 		x_move = 2;
@@ -68,8 +68,8 @@ void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension)
 
 	y_move = 0;
 	x_move = 0;
-	zoom_h = ((WIN_H / 3) / minimap->map->height) - 0.2;
-	zoom_w = ((WIN_W / 3) / minimap->map->width) - 0.2;
+	zoom_h = ((WIN_H / 3.1) / minimap->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / minimap->map->width) - 0.2;
 	while (y_move < standardDimension.y && x_move < standardDimension.x)
 	{
 		my_mlx_pixel_put_minimap(minimap,  zoom_w * position.x + x_move, zoom_h * position.y + y_move, 0x00005555);
@@ -93,8 +93,8 @@ void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension)
 	int	zoom_h;
 	int	zoom_w;
 	
-	zoom_h = ((WIN_H / 3) / minimap->map->height) - 0.2;
-	zoom_w = ((WIN_W / 3) / minimap->map->width) - 0.2;
+	zoom_h = ((WIN_H / 3.1) / minimap->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / minimap->map->width) - 0.2;
 	y_move = 0;
 	while (y_move < standardDimension.y)
 	{
@@ -116,8 +116,8 @@ void	fillAreaAgain(t_minimap *minimap, t_vector position, t_vector standardDimen
 	int	zoom_h;
 	int	zoom_w;
 	
-	zoom_h = ((WIN_H / 3) / minimap->map->height) - 0.2;
-	zoom_w = ((WIN_W / 3) / minimap->map->width) - 0.2;
+	zoom_h = ((WIN_H / 3.1) / minimap->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / minimap->map->width) - 0.2;
 	y_move = 0;
 	while (y_move < standardDimension.y)
 	{
@@ -141,8 +141,8 @@ void	fillMinimap(t_game *game)
 	int			zoom_h;
 	int			zoom_w;
 	
-	zoom_h = ((WIN_H / 3) / game->map->height) - 1;
-	zoom_w = ((WIN_W / 3) / game->map->width) - 1;
+	zoom_h = ((WIN_H / 3.1) / game->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / game->map->width) - 0.2;
 	standard = generateNewVector(zoom_w, zoom_h);
 	j = 0;
 	while (j < game->minimap->height)
@@ -166,9 +166,11 @@ void	fillMinimapAgain(t_game *game)
 	t_vector	standard;
 	int			zoom_h;
 	int			zoom_w;
+	int			x_move;
+	int			y_move;
 	
-	zoom_h = ((WIN_H / 3) / game->map->height) - 0.2;
-	zoom_w = ((WIN_W / 3) / game->map->width) - 0.2;
+	zoom_h = ((WIN_H / 3.1) / game->map->height) - 0.2;
+	zoom_w = ((WIN_W / 3.1) / game->map->width) - 0.2;
 	standard = generateNewVector(zoom_w, zoom_h);
 	j = 0;
 	while (j < game->minimap->height)
@@ -182,4 +184,25 @@ void	fillMinimapAgain(t_game *game)
 		}
 		j++;
 	}
+	j = game->minimap->height;
+	while (j * zoom_h < WIN_H - (WIN_H / 1.5))
+	{	
+		i = 0;
+		while (i < game->minimap->width)
+		{
+			y_move = 0;
+			while (y_move < standard.y)
+			{	
+				x_move = 0;
+				while (x_move < standard.x)
+				{
+					my_mlx_pixel_put_minimap(game->minimap,  zoom_w * i + x_move, zoom_h * j + y_move, 0xFF000000);
+					x_move++;
+				}
+				y_move++;
+			}
+			i++;
+		}
+		j++;
+	}	
 }
