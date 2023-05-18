@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 17:26:15 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:14:07 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <fcntl.h>
+# include <string.h>
 
 # define GREEN "\033[32m"
 # define RED "\033[0;31m"
@@ -158,6 +160,7 @@ typedef struct s_game
 	int				endian;
 	int				ground_color;
 	int				sky_color;
+	int				texdir;
 	t_ray			*rayon;
 	t_map2D			*map;
 	char			*buffer_map;
@@ -200,6 +203,12 @@ int		parse_data(t_game *game, int fd);
 int	is_map_and_player_check(t_map2D *map2D);
 
 int	getColors(t_game *game, char *file);
+int	create_trgb(int t, int r, int g, int b);
+
+////////////////// Textures.c //////////////////
+
+void	draw_text(t_game *game, int	texdir, int x, int y);
+void	choose_tex_ray(t_game *game);
 
 ////////////////// MyMiniLibx.c //////////////////
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:42:37 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 16:45:42 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:17:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	ft_verline(t_game *game, int x, t_ray *ray)
 {
 	if (ray->draw_start < ray->draw_end)
 	{
+		choose_tex_ray(game);
 		draw_line(game, ray, x);
 		ray->draw_start++;
 	}
@@ -175,7 +176,8 @@ static void	draw_line(t_game *game, t_ray *ray, int x)
 	while (++ray->draw_start < ray->draw_end)
 	{
 		if (ray->draw_start < ray->h && x < ray->w)
-			my_mlx_pixel_put(game, x, ray->draw_start, ray->color);
+			// my_mlx_pixel_put(game, x, ray->draw_start, ray->color);
+			draw_text(game, game->texdir,x, ray->draw_start);
 	}
 	while (ground > 1)
 	{	
