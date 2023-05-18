@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:10:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:27:42 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:05:35 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	ft_draw(t_game *game)
 {
 	fillMinimap(game);
 	raycasting(game, game->rayon, game->map);
+	fillMinimapAgain(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->image, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, game->minimap->image, 0, 0);
 }

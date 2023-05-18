@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:45:26 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 14:29:08 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:17:03 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # include "mlx_int.h"
 
 # ifndef WIN_H
-#  define WIN_H 1100
+#  define WIN_H 1000
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 1500
+#  define WIN_W 1000
 # endif
 
 // KEYS_CODE //
@@ -162,7 +162,9 @@ void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
 void	fillPlayer(t_minimap *minimap, t_vector position, t_vector standardDimension);
 void	fillArea(t_minimap *minimap, t_vector position, t_vector standardDimension);
 void	fillLine(t_minimap *minimap, t_vector position, t_vector standardDimension);
+void	fillAreaAgain(t_minimap *minimap, t_vector position, t_vector standardDimension);
 void	fillMinimap(t_game *game);
+void	fillMinimapAgain(t_game *game);
 
 ////////////////// Parsing.c //////////////////
 
