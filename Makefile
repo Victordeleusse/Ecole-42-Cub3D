@@ -45,6 +45,7 @@ $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 		${CC} ${CFLAGS} -c $< -o $@ $(INCLUDES)
 
 ${NAME}: ${OBJS}
+		$(MAKE) -C minilibx-linux/ all
 		$(MAKE) -C Libft_vde-leus/ all
 		$(CC) -o $(NAME) ${OBJS} $(LFLAGS)
 
