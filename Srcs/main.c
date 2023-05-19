@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:05:22 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/05/18 19:23:00 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:08:09 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,24 @@ t_game	*init_allocs(void)
 	return (game);
 }
 
+static void	remove_endspace(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map->map[i])
+	{
+		j = ft_strlen(game->map->map[i]) - 1;
+		while (j >= 0 && game->map->map[i][j] == ' ')
+		{
+			game->map->map[i][j] = '\0';
+			j--;
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		*game;
@@ -74,6 +92,7 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd("Error\n" "Memory allocation failed.\n", 2), 1);
 	if (!init_mlx(game) || !parsing(game, argv[1]))
 		return (free_and_quit(game), 1);
+	remove_endspace(game);
 	get_map_data(game);
 	if (!get_player_position(game->map->map, game->rayon))
 		return (free_and_quit(game), 1);
